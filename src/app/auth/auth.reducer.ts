@@ -1,6 +1,6 @@
-import { Action } from '@ngrx/store';
+import {Action, createReducer, on} from '@ngrx/store';
 import {User} from '../model/user.model';
-import {AuthActions, AuthActionTypes} from './auth.actions';
+import {AuthActions} from './action-types';
 
 
 export interface AuthState {
@@ -13,23 +13,25 @@ export const initialAuthState: AuthState = {
   user: undefined
 };
 
-export function authReducer(state = initialAuthState,
-                            action: AuthActions): AuthState {
-  switch (action.type) {
 
-    case AuthActionTypes.LoginAction:
-      return {
-        loggedIn: true,
-        user: action.payload.user
-      };
+export const authReducer = createReducer(
 
-    case AuthActionTypes.LogoutAction:
-        return {
-          loggedIn: false,
-          user: undefined
-        };
+  initialAuthState,
 
-    default:
-      return state;
-  }
-}
+  on(AuthActions.login, (state, action) => {
+    return {
+      loggedIn: true,
+      user: action.user
+    }
+  }),
+
+  on(AuthActions.logout, () => {
+    return {
+      loggedIn: false,
+      user: undefined
+    };
+  })
+
+);
+
+

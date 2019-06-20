@@ -1,49 +1,59 @@
-import { Injectable } from '@angular/core';
-import {Actions, Effect, ofType} from '@ngrx/effects';
-import {AuthActionTypes, Login, Logout} from './auth.actions';
-import {tap} from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {Actions, createEffect, Effect, ofType, ROOT_EFFECTS_INIT} from '@ngrx/effects';
+import {map, tap} from 'rxjs/operators';
 import {Router} from '@angular/router';
 import {defer, of} from 'rxjs';
+import {AuthActions} from './action-types';
+import {login, logout} from './auth.actions';
 
 
 @Injectable()
 export class AuthEffects {
 
-  @Effect({dispatch:false})
-  login$ = this.actions$.pipe(
-    ofType<Login>(AuthActionTypes.LoginAction),
-    tap(action => localStorage.setItem("user", JSON.stringify(action.payload.user)))
-  );
+  login$ = createEffect(() =>
+      this.actions$.pipe(
+        ofType(AuthActions.login),
+        tap(action => localStorage.setItem('user', JSON.stringify(action.user)))
+      )
+    ,
+    {dispatch: false});
 
-  @Effect({dispatch:false})
-  logout$ = this.actions$.pipe(
-    ofType<Logout>(AuthActionTypes.LogoutAction),
-    tap(() => {
 
-      localStorage.removeItem("user");
-      this.router.navigateByUrl('/login');
+  logout$ = createEffect(() =>
+      this.actions$.pipe(
+        ofType(AuthActions.logout),
+        tap(() => {
 
-    })
-  );
+          localStorage.removeItem('user');
+          this.router.navigateByUrl('/login');
 
-  @Effect()
-  init$ = defer(() => {
+        })
+      )
+    , {dispatch: false});
 
-    const userData = localStorage.getItem("user");
 
-    if (userData) {
-       return of(new Login({user:JSON.parse(userData)}));
-    }
-    else {
-      return <any>of(new Logout());
-    }
 
-  });
+  init$ = createEffect(() =>
+    this.actions$
+      .pipe(
+      ofType(ROOT_EFFECTS_INIT),
+      map(() => {
+        const userData = localStorage.getItem('user');
 
-  constructor(private actions$: Actions, private router:Router) {
+        if (userData) {
+          return of(login({user: JSON.parse(userData)}));
+        } else {
+          return <any>of(logout());
+        }
+      })
+    ));
+
+
+  constructor(private actions$: Actions, private router: Router) {
 
 
   }
 
 
 }
+
