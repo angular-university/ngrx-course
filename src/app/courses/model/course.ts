@@ -4,10 +4,8 @@ export interface Course {
   seqNo:number;
   iconUrl: string;
   courseListIcon: string;
-  titles: {
-    description: string;
-    longDescription?: string;
-  },
+  description: string;
+  longDescription?: string;
   category: string;
   lessonsCount: number;
   promo: boolean;

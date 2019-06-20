@@ -30,13 +30,13 @@ export class CourseDialogComponent implements OnInit {
 
         this.courseId = course.id;
 
-        this.description = course.titles.description;
+        this.description = course.description;
 
 
         this.form = fb.group({
-            description: [course.titles.description, Validators.required],
+            description: [course.description, Validators.required],
             category: [course.category, Validators.required],
-            longDescription: [course.titles.longDescription,Validators.required],
+            longDescription: [course.longDescription,Validators.required],
             promo: [course.promo, []]
         });
 
