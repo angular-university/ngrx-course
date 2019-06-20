@@ -4,14 +4,14 @@
 
     <mat-card-header>
 
-        <mat-card-title>{{course.description}}</mat-card-title>
+        <mat-card-title>{{course.titles.description}}</mat-card-title>
 
     </mat-card-header>
 
     <img mat-card-image [src]="course.iconUrl">
 
     <mat-card-content>
-        <p>{{course.longDescription}}</p>
+        <p>{{course.titles.longDescription}}</p>
     </mat-card-content>
 
     <mat-card-actions class="course-actions">

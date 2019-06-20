@@ -10,9 +10,16 @@ export interface CoursesState extends EntityState<Course> {
 
 }
 
+export function compareCourses(c1:Course, c2: Course) {
+  return c1.seqNo - c2.seqNo;
+}
+
 
 export const adapter : EntityAdapter<Course> =
-  createEntityAdapter<Course>();
+  createEntityAdapter<Course>({
+    sortComparer: compareCourses
+  });
+
 
 
 export const initialCoursesState: CoursesState = adapter.getInitialState({
