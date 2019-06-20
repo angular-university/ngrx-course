@@ -7,7 +7,7 @@ import {CoursesService} from "../services/courses.service";
 import {AppState} from "../../reducers";
 import {Store} from "@ngrx/store";
 import {Update} from "@ngrx/entity";
-import {CourseSaved} from '../course.actions';
+import {courseSaved} from '../course.actions';
 
 @Component({
     selector: 'course-dialog',
@@ -61,7 +61,7 @@ export class CourseDialogComponent implements OnInit {
                       changes
                     };
 
-                    this.store.dispatch(new CourseSaved({course}));
+                    this.store.dispatch(courseSaved({course}));
 
                     this.dialogRef.close();
                 }

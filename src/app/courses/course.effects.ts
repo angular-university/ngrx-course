@@ -1,66 +1,62 @@
 import {Injectable} from '@angular/core';
-import {Actions, Effect, ofType} from '@ngrx/effects';
-import {
-  AllCoursesLoaded,
-  AllCoursesRequested,
-  CourseActionTypes,
-  CourseLoaded,
-  CourseRequested, LessonsPageCancelled, LessonsPageLoaded,
-  LessonsPageRequested
-} from './course.actions';
-import {throwError,of} from 'rxjs';
-import {catchError, concatMap, exhaustMap, filter, map, mergeMap, withLatestFrom} from "rxjs/operators";
+import {Actions, createEffect, Effect, ofType} from '@ngrx/effects';
+import {of} from 'rxjs';
+import {catchError, filter, map, mergeMap, withLatestFrom} from 'rxjs/operators';
 import {CoursesService} from './services/courses.service';
 import {AppState} from '../reducers';
 import {select, Store} from '@ngrx/store';
-import {allCoursesLoaded} from './course.selectors';
+import {CourseActions} from './action-types';
+import {allCoursesLoaded, courseLoaded, lessonsPageCancelled, lessonsPageLoaded} from './course.actions';
+import {areAllCoursesLoaded} from './course.selectors';
+
 
 @Injectable()
 export class CourseEffects {
 
-  @Effect()
-  loadCourse$ = this.actions$
-    .pipe(
-      ofType<CourseRequested>(CourseActionTypes.CourseRequested),
-      mergeMap(action => this.coursesService.findCourseById(action.payload.courseId)),
-      map(course => new CourseLoaded({course}))
-
+  loadCourse$ = createEffect(() =>
+    this.actions$
+      .pipe(
+        ofType(CourseActions.courseRequested),
+        mergeMap(action => this.coursesService.findCourseById(action.courseId)),
+        map(course => courseLoaded({course}))
+      )
   );
 
-  @Effect()
-  loadAllCourses$ = this.actions$
-    .pipe(
-      ofType<AllCoursesRequested>(CourseActionTypes.AllCoursesRequested),
-      withLatestFrom(this.store.pipe(select(allCoursesLoaded))),
-      filter(([action, allCoursesLoaded]) => !allCoursesLoaded),
-      mergeMap(() => this.coursesService.findAllCourses()),
-      map(courses => new AllCoursesLoaded({courses}))
-    );
+  loadAllCourses$ = createEffect(() =>
+    this.actions$
+      .pipe(
+        ofType(CourseActions.allCoursesRequested),
+        withLatestFrom(this.store.pipe(select(areAllCoursesLoaded))),
+        filter(([action, allCoursesLoaded]) => !allCoursesLoaded),
+        mergeMap(() => this.coursesService.findAllCourses()),
+        map(courses => allCoursesLoaded({courses}))
+      )
+  );
+
+  loadLessonsPage$ = createEffect(() =>
+    this.actions$
+      .pipe(
+        ofType(CourseActions.lessonsPageRequested),
+        mergeMap(action =>
+          this.coursesService.findLessons(action.courseId,
+            action.page.pageIndex, action.page.pageSize)
+            .pipe(
+              catchError(err => {
+                console.log('error loading a lessons page ', err);
+                this.store.dispatch(lessonsPageCancelled());
+                return of([]);
+              })
+            )
+        ),
+        map(lessons => lessonsPageLoaded({lessons}))
+      )
+  );
 
 
-  @Effect()
-  loadLessonsPage$ = this.actions$
-    .pipe(
-      ofType<LessonsPageRequested>(CourseActionTypes.LessonsPageRequested),
-      mergeMap(({payload}) =>
-              this.coursesService.findLessons(payload.courseId,
-                          payload.page.pageIndex, payload.page.pageSize)
-                .pipe(
-                  catchError(err => {
-                    console.log('error loading a lessons page ', err);
-                    this.store.dispatch(new LessonsPageCancelled());
-                    return of([]);
-                  })
-                )
-
-      ),
-      map(lessons => new LessonsPageLoaded({lessons}))
-    );
-
-
-
-  constructor(private actions$ :Actions, private coursesService: CoursesService,
-              private store: Store<AppState>) {
+  constructor(
+    private actions$: Actions,
+    private coursesService: CoursesService,
+    private store: Store<AppState>) {
 
   }
 

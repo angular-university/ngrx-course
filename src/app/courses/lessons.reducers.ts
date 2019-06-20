@@ -1,7 +1,8 @@
 import {createEntityAdapter, EntityAdapter, EntityState} from '@ngrx/entity';
 import {Lesson} from './model/lesson';
 import {Course} from './model/course';
-import {CourseActions, CourseActionTypes} from './course.actions';
+import {createReducer, on} from '@ngrx/store';
+import {CourseActions} from './action-types';
 
 
 
@@ -30,39 +31,27 @@ const initialLessonsState = adapter.getInitialState({
 });
 
 
+export const lessonsReducer = createReducer(
 
-export function lessonsReducer(state = initialLessonsState,
-                               action: CourseActions): LessonsState {
+  initialLessonsState,
 
-  switch(action.type) {
+  on(CourseActions.lessonsPageCancelled, (state, action) => {
+    return {
+      ...state,
+      loading:false
+    };
+  }),
 
-    case CourseActionTypes.LessonsPageCancelled:
+  on(CourseActions.lessonsPageRequested, (state, action) => {
+    return {
+      ...state,
+      loading:true
+    };
+  }),
 
-      return {
-        ...state,
-        loading:false
-      };
+  on(CourseActions.lessonsPageLoaded, (state, action) => adapter.addMany(action.lessons, {...state, loading:false})),
 
-    case CourseActionTypes.LessonsPageRequested:
-      return {
-        ...state,
-        loading:true
-      };
-
-    case CourseActionTypes.LessonsPageLoaded:
-
-      return adapter.addMany(action.payload.lessons, {...state, loading:false});
-
-
-    default:
-
-      return state;
-
-  }
-
-}
-
-
+);
 
 export const {
   selectAll,
