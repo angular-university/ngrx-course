@@ -10,15 +10,16 @@ export const USERS = {
 
 export const COURSES: any = {
 
-  12: {
-    id: 12,
-    description: 'Angular Testing Course',
-    longDescription: 'In-depth guide to Unit Testing and E2E Testing of Angular Applications',
-    iconUrl: 'https://s3-us-west-1.amazonaws.com/angular-university/course-images/angular-testing-small.png',
+  4: {
+    id: 4,
+    description: 'NgRx In Depth',
+    longDescription: 'Learn the modern Ngrx Ecosystem, including NgRx Data, Store, Effects, Router Store, Ngrx Entity, and Dev Tools.',
+    iconUrl: 'https://angular-university.s3-us-west-1.amazonaws.com/course-images/ngrx-v2.png',
+    courseListIcon: 'https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png',
     category: 'BEGINNER',
-    seqNo: 0,
-    url: 'angular-testing-course',
     lessonsCount: 10,
+    seqNo: 0,
+    url: 'ngrx-course'
   },
 
   2: {
@@ -44,18 +45,6 @@ export const COURSES: any = {
     url: 'rxjs-course'
   },
 
-  4: {
-    id: 4,
-    description: 'NgRx In Depth',
-    longDescription: 'Learn the modern Ngrx Ecosystem, including Store, Effects, Router Store, Ngrx Entity, Dev Tools and Schematics.',
-    iconUrl: 'https://s3-us-west-1.amazonaws.com/angular-university/course-images/angular-ngrx-course.png',
-    courseListIcon: 'https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png',
-    category: 'BEGINNER',
-    lessonsCount: 10,
-    seqNo: 3,
-    url: 'ngrx-course'
-  },
-
   1: {
     id: 1,
     description: 'Serverless Angular with Firebase Course',
@@ -79,6 +68,17 @@ export const COURSES: any = {
     url: 'angular-for-beginners'
   },
 
+  12: {
+    id: 12,
+    description: 'Angular Testing Course',
+    longDescription: 'In-depth guide to Unit Testing and E2E Testing of Angular Applications',
+    iconUrl: 'https://s3-us-west-1.amazonaws.com/angular-university/course-images/angular-testing-small.png',
+    category: 'BEGINNER',
+    seqNo: 6,
+    url: 'angular-testing-course',
+    lessonsCount: 10,
+  },
+
   6: {
     id: 6,
     description: 'Angular Security Course - Web Security Fundamentals',
@@ -87,7 +87,7 @@ export const COURSES: any = {
     courseListIcon: 'https://s3-us-west-1.amazonaws.com/angular-university/course-images/lock-v2.png',
     category: 'ADVANCED',
     lessonsCount: 11,
-    seqNo: 6,
+    seqNo: 7,
     url: 'angular-security-course'
   },
 
@@ -99,7 +99,7 @@ export const COURSES: any = {
     courseListIcon: 'https://s3-us-west-1.amazonaws.com/angular-university/course-images/alien.png',
     category: 'ADVANCED',
     lessonsCount: 8,
-    seqNo: 7,
+    seqNo: 8,
     url: 'angular-pwa-course'
   },
 
@@ -110,7 +110,7 @@ export const COURSES: any = {
     iconUrl: 'https://angular-academy.s3.amazonaws.com/thumbnails/advanced_angular-small-v3.png',
     courseListIcon: 'https://angular-academy.s3.amazonaws.com/thumbnails/angular-advanced-lesson-icon.png',
     category: 'ADVANCED',
-    seqNo: 8,
+    seqNo: 9,
     url: 'angular-advanced-course'
   },
 
@@ -121,7 +121,7 @@ export const COURSES: any = {
     iconUrl: 'https://angular-academy.s3.amazonaws.com/thumbnails/typescript-2-small.png',
     courseListIcon: 'https://angular-academy.s3.amazonaws.com/thumbnails/typescript-2-lesson.png',
     category: 'BEGINNER',
-    seqNo: 9,
+    seqNo: 10,
     url: 'typescript-course'
   },
 
@@ -132,7 +132,7 @@ export const COURSES: any = {
     iconUrl: 'https://s3-us-west-1.amazonaws.com/angular-academy/blog/images/rxjs-reactive-patterns-small.png',
     courseListIcon: 'https://angular-academy.s3.amazonaws.com/course-logos/observables_rxjs.png',
     category: 'BEGINNER',
-    seqNo: 10,
+    seqNo: 11,
     url: 'rxjs-patterns-course'
   },
 
@@ -142,7 +142,7 @@ export const COURSES: any = {
     longDescription: 'Build Applications with the official Angular Widget Library',
     iconUrl: 'https://s3-us-west-1.amazonaws.com/angular-university/course-images/material_design.png',
     category: 'BEGINNER',
-    seqNo: 11,
+    seqNo: 12,
     url: 'angular-material-course'
   }
 
@@ -530,6 +530,52 @@ export const LESSONS = {
     'duration': '7:05',
     'seqNo': 10,
     courseId: 12
+  },
+
+
+  // Ngrx Course
+  50: {
+    id: 50,
+    "description": "Welcome to the Angular Ngrx Course",
+    "duration": "6:53",
+    "seqNo": 1,
+    courseId: 4
+
+  },
+  51: {
+    id: 51,
+    "description": "The Angular Ngrx Architecture Course - Helicopter View",
+    "duration": "5:52",
+    "seqNo": 2,
+    courseId: 4
+  },
+  52: {
+    id: 52,
+    "description": "The Origins of Flux - Understanding the Famous Facebook Bug Problem",
+    "duration": "8:17",
+    "seqNo": 3,
+    courseId: 4
+  },
+  53: {
+    id: 53,
+    "description": "Custom Global Events - Why Don't They Scale In Complexity?",
+    "duration": "7:47",
+    "seqNo": 4,
+    courseId: 4
+  },
+  54: {
+    id: 54,
+    "description": "The Flux Architecture - How Does it Solve Facebook Counter Problem?",
+    "duration": "9:22",
+    "seqNo": 5,
+    courseId: 4
+  },
+  55: {
+    id: 55,
+    "description": "Unidirectional Data Flow And The Angular Development Mode",
+    "duration": "7:07",
+    "seqNo": 6,
+    courseId: 4
   }
 
 
