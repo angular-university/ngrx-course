@@ -1,0 +1,63 @@
+<div class="course">
+
+    <h2>{{course?.description}}</h2>
+
+    <img class="course-thumbnail" [src]="course?.iconUrl">
+
+    <div class="mat-elevation-z8 lessons-table-container">
+
+        <div class="spinner-container" *ngIf="loading$ | async">
+
+            <mat-spinner></mat-spinner>
+
+        </div>
+
+        <mat-table class="lessons-table" [dataSource]="dataSource">
+
+            <ng-container matColumnDef="seqNo">
+
+                <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
+
+                <mat-cell *matCellDef="let lesson">{{lesson.seqNo}}</mat-cell>
+
+            </ng-container>
+
+            <ng-container matColumnDef="description">
+
+                <mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
+
+                <mat-cell class="description-cell"
+                          *matCellDef="let lesson">{{lesson.description}}
+                </mat-cell>
+
+            </ng-container>
+
+            <ng-container matColumnDef="duration">
+
+                <mat-header-cell *matHeaderCellDef>Duration</mat-header-cell>
+
+                <mat-cell class="duration-cell"
+                          *matCellDef="let lesson">{{lesson.duration}}
+                </mat-cell>
+
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+            <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+        </mat-table>
+
+
+        <mat-paginator [length]="course?.lessonsCount" [pageSize]="3"></mat-paginator>
+
+    </div>
+
+
+</div>
+
+
+
+
+
+
