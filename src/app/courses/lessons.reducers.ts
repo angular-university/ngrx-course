@@ -42,7 +42,7 @@ export const lessonsReducer = createReducer(
     };
   }),
 
-  on(CourseActions.lessonsPageRequested, (state, action) => {
+  on(CourseActions.loadLessonsPage, (state, action) => {
     return {
       ...state,
       loading:true

@@ -10,8 +10,8 @@ export interface PageQuery {
   pageSize:number;
 }
 
-export const lessonsPageRequested = createAction(
-  '[Course Landing Page] Lessons Page Requested',
+export const loadLessonsPage = createAction(
+  '[Course Landing Page] Load Lessons Page',
    props<{courseId:number, page:PageQuery}>()
 );
 
@@ -24,7 +24,7 @@ export const lessonsPageCancelled = createAction(
   '[Courses API] Lessons Page Cancelled'
 );
 
-export const courseRequested = createAction(
+export const loadCourse = createAction(
   '[View Course Page] Course Requested',
   props<{ courseId: number }>()
 );
@@ -34,7 +34,7 @@ export const courseLoaded = createAction(
   props<{ course: Course }>()
 );
 
-export const allCoursesRequested = createAction(
+export const loadAllCourses = createAction(
   '[Courses Home Page] All Courses Requested'
 );
 

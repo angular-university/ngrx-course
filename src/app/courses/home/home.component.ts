@@ -4,7 +4,7 @@ import {Observable} from "rxjs";
 import {AppState} from '../../reducers';
 import {select, Store} from '@ngrx/store';
 import {selectAdvancedCourses, selectAllCourses, selectBeginnerCourses, selectPromoTotal} from '../course.selectors';
-import {allCoursesRequested} from '../course.actions';
+import {loadAllCourses} from '../course.actions';
 @Component({
     selector: 'home',
     templateUrl: './home.component.html',
@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
 
     ngOnInit() {
 
-        this.store.dispatch(allCoursesRequested());
+        this.store.dispatch(loadAllCourses());
 
         this.beginnerCourses$ = this.store.pipe(select(selectBeginnerCourses));
 

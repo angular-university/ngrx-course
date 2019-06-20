@@ -8,7 +8,7 @@ import {CoursesService} from "./courses.service";
 import {catchError, finalize, tap} from 'rxjs/operators';
 import {AppState} from '../../reducers';
 import {select, Store} from '@ngrx/store';
-import {lessonsPageRequested, PageQuery} from '../course.actions';
+import {loadLessonsPage, PageQuery} from '../course.actions';
 import {selectLessonsPage} from '../course.selectors';
 
 
@@ -30,7 +30,7 @@ export class LessonsDataSource implements DataSource<Lesson> {
                 this.lessonsSubject.next(lessons);
               }
               else {
-                this.store.dispatch(lessonsPageRequested({courseId, page}));
+                this.store.dispatch(loadLessonsPage({courseId, page}));
               }
             }),
             catchError(() => of([]))

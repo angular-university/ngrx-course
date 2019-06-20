@@ -16,7 +16,7 @@ export class CourseEffects {
   loadCourse$ = createEffect(() =>
     this.actions$
       .pipe(
-        ofType(CourseActions.courseRequested),
+        ofType(CourseActions.loadCourse),
         mergeMap(action => this.coursesService.findCourseById(action.courseId)),
         map(course => courseLoaded({course}))
       )
@@ -25,7 +25,7 @@ export class CourseEffects {
   loadAllCourses$ = createEffect(() =>
     this.actions$
       .pipe(
-        ofType(CourseActions.allCoursesRequested),
+        ofType(CourseActions.loadAllCourses),
         withLatestFrom(this.store.pipe(select(areAllCoursesLoaded))),
         filter(([action, allCoursesLoaded]) => !allCoursesLoaded),
         mergeMap(() => this.coursesService.findAllCourses()),
@@ -36,7 +36,7 @@ export class CourseEffects {
   loadLessonsPage$ = createEffect(() =>
     this.actions$
       .pipe(
-        ofType(CourseActions.lessonsPageRequested),
+        ofType(CourseActions.loadLessonsPage),
         mergeMap(action =>
           this.coursesService.findLessons(action.courseId,
             action.page.pageIndex, action.page.pageSize)
