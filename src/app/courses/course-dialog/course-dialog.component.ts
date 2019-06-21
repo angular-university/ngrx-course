@@ -12,34 +12,28 @@ import { saveCourse} from '../course.actions';
     templateUrl: './course-dialog.component.html',
     styleUrls: ['./course-dialog.component.css']
 })
-export class CourseDialogComponent implements OnInit {
+export class CourseDialogComponent {
 
-    courseId:number;
+    dialogTitle:string;
+
+    course:Course;
 
     form: FormGroup;
-    description:string;
 
     constructor(
         private store: Store<AppState>,
         private fb: FormBuilder,
         private dialogRef: MatDialogRef<CourseDialogComponent>,
-        @Inject(MAT_DIALOG_DATA) course:Course ) {
+        @Inject(MAT_DIALOG_DATA) data ) {
 
-        this.courseId = course.id;
-
-        this.description = course.description;
-
+        this.course = data.course;
 
         this.form = fb.group({
-            description: [course.description, Validators.required],
-            category: [course.category, Validators.required],
-            longDescription: [course.longDescription,Validators.required],
-            promo: [course.promo, []]
+            description: [this.course.description, Validators.required],
+            category: [this.course.category, Validators.required],
+            longDescription: [this.course.longDescription,Validators.required],
+            promo: [this.course.promo, []]
         });
-
-    }
-
-    ngOnInit() {
 
     }
 
@@ -47,7 +41,7 @@ export class CourseDialogComponent implements OnInit {
     save() {
 
       const update = {
-        id: this.courseId,
+        id: this.course.id,
         changes: this.form.value
       };
 
