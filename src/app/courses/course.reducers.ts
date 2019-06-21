@@ -37,7 +37,7 @@ export const coursesReducer = createReducer(
 
   on(CourseActions.allCoursesLoaded, (state, action) => adapter.addAll(action.courses, {...state, allCoursesLoaded:true})),
 
-  on(CourseActions.courseSaved, (state, action) => adapter.updateOne(action.course,state)),
+  on(CourseActions.saveCourse, (state, action) => adapter.updateOne(action.update, state))
 
 );
 

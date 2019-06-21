@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Actions, createEffect, Effect, ofType} from '@ngrx/effects';
 import {of} from 'rxjs';
-import {catchError, filter, map, mergeMap, withLatestFrom} from 'rxjs/operators';
+import {catchError, concatMap, filter, map, mergeMap, withLatestFrom} from 'rxjs/operators';
 import {CoursesService} from './services/courses.service';
 import {AppState} from '../reducers';
 import {select, Store} from '@ngrx/store';
@@ -51,6 +51,15 @@ export class CourseEffects {
         map(lessons => lessonsPageLoaded({lessons}))
       )
   );
+
+
+  saveCourse$ = createEffect(() =>
+      this.actions$
+        .pipe(
+          ofType(CourseActions.saveCourse),
+          concatMap(action => this.coursesService.saveCourse(action.update.id, action.update.changes))
+        )
+    ,{dispatch: false});
 
 
   constructor(

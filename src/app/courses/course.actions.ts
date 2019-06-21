@@ -1,8 +1,7 @@
-import {Action, createAction, props} from '@ngrx/store';
+import {createAction, props} from '@ngrx/store';
 import {Course} from './model/course';
-import {Update} from '@ngrx/entity';
 import {Lesson} from './model/lesson';
-
+import {UpdateNum} from '@ngrx/entity/src/models';
 
 
 export interface PageQuery {
@@ -43,10 +42,11 @@ export const allCoursesLoaded = createAction(
   props<{ courses: Course[] }>()
 );
 
-export const courseSaved = createAction(
-  '[Edit Course Dialog] Course Saved',
-  props<{ course: Update<Course> }>()
-)
+export const saveCourse = createAction(
+  '[Save Course Dialog] Save Course',
+  props<{update: UpdateNum<Course>}>()
+);
+
 
 
 
