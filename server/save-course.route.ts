@@ -14,7 +14,11 @@ export function saveCourse(req: Request, res: Response) {
         ...changes
     };
 
-    res.status(200).json(COURSES[id]);
+    setTimeout(() => {
+
+      res.status(200).json(COURSES[id]);
+
+    }, 2000);
 
 }
 

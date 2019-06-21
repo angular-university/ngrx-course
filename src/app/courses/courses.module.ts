@@ -30,6 +30,7 @@ import {lessonsReducer} from './lessons.reducers';
 import {CourseDataService} from './services/course-data.service';
 import {EntityDataModule, EntityDataService, EntityDefinitionService, EntityMetadataMap} from '@ngrx/data';
 import {Course} from './model/course';
+import {CourseEntityService} from './services/course-entity.service';
 
 
 export const coursesRoutes: Routes = [
@@ -59,7 +60,10 @@ export function compareCourses(c1:Course, c2: Course) {
 
 const entityMetadata: EntityMetadataMap = {
   Course: {
-    sortComparer: compareCourses
+    sortComparer: compareCourses,
+    entityDispatcherOptions: {
+      optimisticUpdate: true
+    }
   },
 };
 
@@ -92,7 +96,8 @@ const entityMetadata: EntityMetadataMap = {
   providers: [
     CoursesService,
     CourseDataService,
-    CoursesResolver
+    CoursesResolver,
+    CourseEntityService
   ]
 })
 export class CoursesModule {

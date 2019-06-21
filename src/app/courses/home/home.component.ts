@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {AppState} from '../../reducers';
 import {createSelector, select, Store} from '@ngrx/store';
 import {EntityCollectionService, EntityServices} from '@ngrx/data';
+import {CourseEntityService} from '../services/course-entity.service';
 @Component({
     selector: 'home',
     templateUrl: './home.component.html',
@@ -17,19 +18,16 @@ export class HomeComponent implements OnInit {
 
     advancedCourses$: Observable<Course[]>;
 
-    coursesEntityService: EntityCollectionService<Course>;
 
     constructor(
       private store: Store<AppState>,
-      private entityServices: EntityServices) {
-
-      this.coursesEntityService = entityServices.getEntityCollectionService('Course');
+      private coursesService: CourseEntityService) {
 
     }
 
     ngOnInit() {
 
-      const selectAllCourses = this.coursesEntityService.selectors.selectEntities;
+      const selectAllCourses = this.coursesService.selectors.selectEntities;
 
       const selectBeginnerCourses = createSelector(
         selectAllCourses,

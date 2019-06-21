@@ -2,10 +2,10 @@ import {Component, Inject, OnInit} from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import {FormBuilder, Validators, FormGroup} from "@angular/forms";
 import {Course} from "../model/course";
-import {CoursesService} from "../services/courses.service";
 import {AppState} from "../../reducers";
 import {Store} from "@ngrx/store";
-import { saveCourse} from '../course.actions';
+import {EntityCollectionService, EntityServices} from '@ngrx/data';
+import {CourseEntityService} from '../services/course-entity.service';
 
 @Component({
     selector: 'course-dialog',
@@ -20,11 +20,13 @@ export class CourseDialogComponent {
 
     form: FormGroup;
 
+
     constructor(
         private store: Store<AppState>,
         private fb: FormBuilder,
         private dialogRef: MatDialogRef<CourseDialogComponent>,
-        @Inject(MAT_DIALOG_DATA) data ) {
+        @Inject(MAT_DIALOG_DATA) data,
+        private coursesService: CourseEntityService) {
 
         this.course = data.course;
 
@@ -35,17 +37,18 @@ export class CourseDialogComponent {
             promo: [this.course.promo, []]
         });
 
+
     }
 
 
     save() {
 
-      const update = {
-        id: this.course.id,
-        changes: this.form.value
+      const updatedCourse = {
+        ...this.course,
+        ...this.form.value
       };
 
-      this.store.dispatch(saveCourse({update}));
+      this.coursesService.update(updatedCourse);
 
       this.dialogRef.close();
 

@@ -23,10 +23,6 @@ export const lessonsPageCancelled = createAction(
   '[Courses API] Lessons Page Cancelled'
 );
 
-export const saveCourse = createAction(
-  '[Save Course Dialog] Save Course',
-  props<{update: UpdateNum<Course>}>()
-);
 
 
 
