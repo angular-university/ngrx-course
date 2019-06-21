@@ -2,9 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Course} from "../model/course";
 import {Observable} from "rxjs";
 import {AppState} from '../../reducers';
-import {select, Store} from '@ngrx/store';
-import {selectAdvancedCourses, selectAllCourses, selectBeginnerCourses, selectPromoTotal} from '../course.selectors';
-import {loadAllCourses} from '../course.actions';
+import {createSelector, select, Store} from '@ngrx/store';
+import {EntityCollectionService, EntityServices} from '@ngrx/data';
 @Component({
     selector: 'home',
     templateUrl: './home.component.html',
@@ -18,17 +17,39 @@ export class HomeComponent implements OnInit {
 
     advancedCourses$: Observable<Course[]>;
 
-    constructor(private store: Store<AppState>) {
+    coursesEntityService: EntityCollectionService<Course>;
+
+    constructor(
+      private store: Store<AppState>,
+      private entityServices: EntityServices) {
+
+      this.coursesEntityService = entityServices.getEntityCollectionService('Course');
 
     }
 
     ngOnInit() {
 
-        this.store.dispatch(loadAllCourses());
+      const selectAllCourses = this.coursesEntityService.selectors.selectEntities;
+
+      const selectBeginnerCourses = createSelector(
+        selectAllCourses,
+        courses => courses.filter(course => course.category === 'BEGINNER')
+      );
 
         this.beginnerCourses$ = this.store.pipe(select(selectBeginnerCourses));
 
+        const selectAdvancedCourses = createSelector(
+          selectAllCourses,
+          courses => courses.filter(course => course.category === 'ADVANCED')
+        );
+
         this.advancedCourses$ = this.store.pipe(select(selectAdvancedCourses));
+
+        const selectPromoTotal = createSelector(
+          selectAllCourses,
+          courses => courses.filter(course => course.promo).length
+        );
+
 
         this.promoTotal$ = this.store.pipe(select(selectPromoTotal));
 

@@ -21,6 +21,7 @@ import {RouterState, StoreRouterConnectingModule} from '@ngrx/router-store';
 import {EffectsModule} from '@ngrx/effects';
 import {reducers} from './reducers';
 import {AuthGuard} from './auth/auth.guard';
+import {EntityDataModule} from '@ngrx/data';
 
 
 const routes: Routes = [
@@ -34,6 +35,7 @@ const routes: Routes = [
     redirectTo: '/'
   }
 ];
+
 
 
 @NgModule({
@@ -67,7 +69,8 @@ const routes: Routes = [
     StoreRouterConnectingModule.forRoot({
       stateKey: 'router',
       routerState: RouterState.Minimal,
-    })
+    }),
+    EntityDataModule.forRoot({})
   ],
   bootstrap: [AppComponent]
 })

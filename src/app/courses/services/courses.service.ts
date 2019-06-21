@@ -15,26 +15,11 @@ export class CoursesService {
 
     }
 
-    findCourseById(courseId: number): Observable<Course> {
-        return this.http.get<Course>(`/api/courses/${courseId}`);
-    }
-
     findAllCourses(): Observable<Course[]> {
         return this.http.get('/api/courses')
             .pipe(
                 map(res => res['payload'])
             );
-    }
-
-    findAllCourseLessons(courseId:number): Observable<Lesson[]> {
-        return this.http.get('/api/lessons', {
-            params: new HttpParams()
-                .set('courseId', courseId.toString())
-                .set('pageNumber', "0")
-                .set('pageSize', "1000")
-        }).pipe(
-            map(res =>  res["payload"])
-        );
     }
 
     findLessons(
