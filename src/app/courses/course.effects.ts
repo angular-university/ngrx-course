@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
-import {Actions, createEffect, Effect, ofType} from '@ngrx/effects';
+import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {of} from 'rxjs';
-import {catchError, concatMap, filter, map, mergeMap, withLatestFrom} from 'rxjs/operators';
+import {catchError, map, mergeMap} from 'rxjs/operators';
 import {CoursesService} from './services/courses.service';
 import {AppState} from '../reducers';
 import {select, Store} from '@ngrx/store';
 import {CourseActions} from './action-types';
-import {allCoursesLoaded, courseLoaded, lessonsPageCancelled, lessonsPageLoaded} from './course.actions';
+import {lessonsPageCancelled, lessonsPageLoaded} from './course.actions';
 
 
 @Injectable()
