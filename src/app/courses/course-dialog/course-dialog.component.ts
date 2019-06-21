@@ -16,6 +16,8 @@ export class CourseDialogComponent {
 
     dialogTitle:string;
 
+    mode: 'create' | 'update';
+
     course:Course;
 
     form: FormGroup;
@@ -28,7 +30,9 @@ export class CourseDialogComponent {
         @Inject(MAT_DIALOG_DATA) data,
         private coursesService: CourseEntityService) {
 
+        this.dialogTitle = data.dialogTitle;
         this.course = data.course;
+        this.mode = data.mode;
 
         this.form = fb.group({
             description: [this.course.description, Validators.required],
@@ -43,14 +47,22 @@ export class CourseDialogComponent {
 
     save() {
 
-      const updatedCourse = {
+      const course = {
         ...this.course,
         ...this.form.value
       };
 
-      this.coursesService.update(updatedCourse);
+      if (this.mode == 'update') {
+        this.coursesService.update(course);
+        this.dialogRef.close();
+      }
+      else if (this.mode == 'create') {
 
-      this.dialogRef.close();
+        this.coursesService.add(course).subscribe(() => this.dialogRef.close());
+
+      }
+
+
 
     }
 
