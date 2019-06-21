@@ -32,23 +32,6 @@ export class AuthEffects {
     , {dispatch: false});
 
 
-
-  init$ = createEffect(() =>
-    this.actions$
-      .pipe(
-      ofType(ROOT_EFFECTS_INIT),
-      map(() => {
-        const userData = localStorage.getItem('user');
-
-        if (userData) {
-          return of(login({user: JSON.parse(userData)}));
-        } else {
-          return <any>of(logout());
-        }
-      })
-    ));
-
-
   constructor(private actions$: Actions, private router: Router) {
 
 

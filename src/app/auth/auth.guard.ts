@@ -5,6 +5,7 @@ import {select, Store} from '@ngrx/store';
 import {AppState} from '../reducers';
 import {isLoggedIn} from './auth.selectors';
 import {tap} from 'rxjs/operators';
+import {login, logout} from './auth.actions';
 
 
 
@@ -19,6 +20,14 @@ export class AuthGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot,
               state: RouterStateSnapshot): Observable<boolean>  {
+
+    const userData = localStorage.getItem('user');
+
+    if (userData) {
+       this.store.dispatch(login({user: JSON.parse(userData)}));
+    } else {
+      this.store.dispatch(logout());
+    }
 
     return this.store
       .pipe(
