@@ -6,9 +6,10 @@
 }
 
 .course-thumbnail {
-    width: 150px;
+    width: 175px;
     margin: 20px auto 0 auto;
     display: block;
+    border-radius: 4px;
 }
 
 .description-cell {
@@ -41,4 +42,9 @@
 
 h2 {
   font-family: "Roboto";
+}
+
+
+.bottom-toolbar {
+  margin-top: 20px;
 }

@@ -1,80 +1,81 @@
-
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import { MatPaginator } from "@angular/material/paginator";
-import { MatSort } from "@angular/material/sort";
-import { MatTableDataSource } from "@angular/material/table";
-import {Course} from "../model/course";
-import {CoursesHttpService} from "../services/courses-http.service";
-import {debounceTime, distinctUntilChanged, startWith, tap, delay} from 'rxjs/operators';
-import {merge, fromEvent, Observable} from "rxjs";
-import {LessonsDataSource} from "../services/lessons.datasource";
+import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {Course} from '../model/course';
+import {Observable} from 'rxjs';
 import {AppState} from '../../reducers';
-import {select, Store} from '@ngrx/store';
+import {createSelector, select, Store} from '@ngrx/store';
 import {PageQuery} from '../course.actions';
-import {selectLessonsLoading} from '../course.selectors';
+import {Lesson} from '../model/lesson';
+import {CourseEntityService} from '../services/course-entity.service';
 
 
 @Component({
-    selector: 'course',
-    templateUrl: './course.component.html',
-    styleUrls: ['./course.component.css']
+  selector: 'course',
+  templateUrl: './course.component.html',
+  styleUrls: ['./course.component.css']
 })
-export class CourseComponent implements OnInit, AfterViewInit {
+export class CourseComponent implements OnInit {
 
-    course:Course;
+  course$: Observable<Course>;
 
-    dataSource: LessonsDataSource;
+  lessons: Lesson[] = [];
 
-    displayedColumns = ["seqNo", "description", "duration"];
+  displayedColumns = ['seqNo', 'description', 'duration'];
 
-    @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-
-    loading$ : Observable<boolean>;
+  loading$: Observable<boolean>;
 
 
-    constructor(private route: ActivatedRoute, private store: Store<AppState>) {
+  constructor(
+    private route: ActivatedRoute,
+    private store: Store<AppState>,
+    private coursesService: CourseEntityService) {
 
-    }
+  }
 
-    ngOnInit() {
+  ngOnInit() {
 
-        this.course = this.route.snapshot.data["course"];
+    const courseUrl = this.route.snapshot.paramMap.get('id');
 
-        this.loading$ = this.store.pipe(select(selectLessonsLoading));
+    this.loading$ = this.coursesService.loading$;
 
-        this.dataSource = new LessonsDataSource(this.store);
+    const selectAllCourses = this.coursesService.selectors.selectEntities;
 
-        const initialPage: PageQuery = {
-          pageIndex: 0,
-          pageSize: 3
-        };
+    const selectCourseByUrl = createSelector(
+      selectAllCourses,
+      courses => courses.find(course => course.url == courseUrl)
+    );
 
-        this.dataSource.loadLessons(this.course.id, initialPage);
+    this.course$ = this.store.pipe(select(selectCourseByUrl));
 
-    }
+    /*
+    const initialPage: PageQuery = {
+      pageIndex: 0,
+      pageSize: 3
+    };
 
-    ngAfterViewInit() {
+    this.dataSource.loadLessons(courseUrl, initialPage);
 
-        this.paginator.page
-          .pipe(
-            tap(() => this.loadLessonsPage())
-          )
-          .subscribe();
+    */
 
-
-    }
-
-    loadLessonsPage() {
-
-      const newPage: PageQuery = {
-        pageIndex: this.paginator.pageIndex,
-        pageSize: this.paginator.pageSize
-      };
-
-      this.dataSource.loadLessons(this.course.id, newPage);
-
-    }
+  }
 
 
+/*
+  loadLessonsPage() {
+
+    const newPage: PageQuery = {
+      pageIndex: this.paginator.pageIndex,
+      pageSize: this.paginator.pageSize
+    };
+
+    this.dataSource.loadLessons(this.course.id, newPage);
+
+  }
+
+*/
+
+
+  loadMore() {
+
+  }
 }

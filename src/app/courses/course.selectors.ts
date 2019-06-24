@@ -17,6 +17,7 @@ export const selectAllLessons = createSelector(
 );
 
 
+
 export const selectLessonsPage = (courseId:number, page:PageQuery) => createSelector(
   selectAllLessons,
   allLessons => {
@@ -32,11 +33,6 @@ export const selectLessonsPage = (courseId:number, page:PageQuery) => createSele
 
 );
 
-
-export const selectLessonsLoading = createSelector(
-  selectLessonsState,
-  lessonsState => lessonsState.loading
-);
 
 
 
