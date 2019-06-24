@@ -6,5 +6,10 @@
 
 .course-actions {
     text-align: center;
+
+}
+
+.course-actions button {
+  margin-right: 10px;
 }
 

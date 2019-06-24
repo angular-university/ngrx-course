@@ -35,6 +35,12 @@ export class CoursesCardListComponent implements OnInit {
 
     }
 
+  onDeleteCourse() {
+
+
+
+  }
+
 }
 
 
