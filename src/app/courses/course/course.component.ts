@@ -35,10 +35,6 @@ export class CourseComponent implements OnInit {
 
     const courseUrl = this.route.snapshot.paramMap.get('id');
 
-    this.loading$ = this.coursesService.loading$;
-
-    const selectAllCourses = this.coursesService.selectors.selectEntities;
-
     this.course$ = this.coursesService.entities$
       .pipe(
         map(courses => courses.find(course => course.url == courseUrl))
@@ -51,8 +47,9 @@ export class CourseComponent implements OnInit {
           "pageIndex": "0",
           "pageSize": "3"
         }))
-
       );
+
+    this.loading$ = this.lessonsService.loading$;
 
   }
 
