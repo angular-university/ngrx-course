@@ -1,46 +1,69 @@
 
-<ng-container *ngIf="form">
+<h2 mat-dialog-title>{{title}}</h2>
 
-  <ng-container [formGroup]="form">
+<mat-dialog-content>
 
-    <mat-form-field>
+  <ng-container *ngIf="form">
 
-      <input matInput
-             placeholder="Course Description"
-             formControlName="description">
+    <ng-container [formGroup]="form">
 
-    </mat-form-field>
+      <mat-form-field>
 
-    <mat-form-field>
+        <input matInput
+               placeholder="Course Description"
+               formControlName="description">
 
-      <mat-select placeholder="Select category"
-                  formControlName="category">
+      </mat-form-field>
 
-        <mat-option value="BEGINNER">
-          Beginner</mat-option>
-        <mat-option value="INTERMEDIATE">
-          Intermediate</mat-option>
-        <mat-option value="ADVANCED">
-          Advanced</mat-option>
+      <mat-form-field>
 
-      </mat-select>
+        <mat-select placeholder="Select category"
+                    formControlName="category">
 
-    </mat-form-field>
+          <mat-option value="BEGINNER">
+            Beginner</mat-option>
+          <mat-option value="INTERMEDIATE">
+            Intermediate</mat-option>
+          <mat-option value="ADVANCED">
+            Advanced</mat-option>
 
-    <mat-slide-toggle formControlName="promo">Promotion On</mat-slide-toggle>
+        </mat-select>
+
+      </mat-form-field>
+
+      <mat-slide-toggle formControlName="promo">Promotion On</mat-slide-toggle>
 
 
-    <mat-form-field>
+      <mat-form-field>
 
         <textarea matInput placeholder="Description"
                   formControlName="longDescription">
 
         </textarea>
 
-    </mat-form-field>
+      </mat-form-field>
+
+    </ng-container>
+
 
   </ng-container>
 
+</mat-dialog-content>
 
-</ng-container>
+<mat-dialog-actions>
+
+  <button mat-raised-button (click)="onClose()">
+    Close
+  </button>
+
+  <button mat-raised-button color="primary"
+          [disabled]="!form?.valid"
+          (click)="onSave()">
+    Save
+  </button>
+
+</mat-dialog-actions>
+
+
+
 

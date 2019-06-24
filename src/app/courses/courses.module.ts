@@ -2,7 +2,7 @@ import {ModuleWithProviders, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HomeComponent} from './home/home.component';
 import {CoursesCardListComponent} from './courses-card-list/courses-card-list.component';
-import {EditCourseDialogComponent} from './course-dialog/edit-course-dialog.component';
+import {EditCourseDialogComponent} from './edit-course-dialog/edit-course-dialog.component';
 import {CoursesResolver} from './services/courses-resolver.service';
 import {CoursesHttpService} from './services/courses-http.service';
 import {CourseComponent} from './course/course.component';

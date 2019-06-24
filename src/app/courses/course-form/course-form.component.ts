@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Course} from '../model/course';
 
@@ -13,6 +13,16 @@ export class CourseFormComponent implements OnChanges {
 
   @Input()
   course: Course;
+
+  @Input()
+  title:string;
+
+  @Output()
+  courseChanged = new EventEmitter<Course>();
+
+  @Output()
+  close = new EventEmitter();
+
 
   constructor(private fb: FormBuilder) {
 
@@ -35,6 +45,17 @@ export class CourseFormComponent implements OnChanges {
         });
       }
     }
+  }
+
+  onClose() {
+    this.close.emit();
+  }
+
+  onSave() {
+    this.courseChanged.emit({
+      ...this.course,
+      ...this.form.value
+    });
   }
 
 }
