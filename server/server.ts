@@ -7,6 +7,7 @@ import {searchLessons} from "./search-lessons.route";
 import {loginUser} from "./auth.route";
 import {saveCourse} from "./save-course.route";
 import {createCourse} from './create-course.route';
+import {deleteCourse} from './delete-course.route';
 
 const bodyParser = require('body-parser');
 
@@ -25,6 +26,8 @@ app.route('/api/courses').get(getAllCourses);
 app.route('/api/course').post(createCourse);
 
 app.route('/api/course/:id').put(saveCourse);
+
+app.route('/api/course/:id').delete(deleteCourse);
 
 app.route('/api/course/:id').get(getCourseById);
 
