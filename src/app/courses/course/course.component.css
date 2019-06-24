@@ -26,15 +26,6 @@
     font-size: 20px;
 }
 
-.spinner-container {
-    height: 340px;
-    width: 390px;
-    position: fixed;
-    background: white;
-    margin-top: 70px;
-    z-index: 1;
-}
-
 .lessons-table {
     min-height: 360px;
     margin-top: 10px;

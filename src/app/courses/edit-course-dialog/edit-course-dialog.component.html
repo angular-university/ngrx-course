@@ -5,6 +5,12 @@
 
   <ng-container *ngIf="form">
 
+    <div class="spinner-container" *ngIf="loading$ | async">
+
+      <mat-spinner></mat-spinner>
+
+    </div>
+
     <ng-container [formGroup]="form">
 
       <mat-form-field>

@@ -49,3 +49,16 @@ $theme: mat-light-theme($primary, $accent);
 
 // Include all theme styles for the components.
 @include angular-material-theme($theme);
+
+
+.spinner-container {
+  position: fixed;
+  height: 334px;
+  width: 360px;
+  display: flex;
+  background: white;
+  margin-top: 70px;
+  z-index: 1;
+  opacity: 0.5;
+  justify-content: center;
+}
