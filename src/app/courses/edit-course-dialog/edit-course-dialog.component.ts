@@ -4,6 +4,7 @@ import {Course} from '../model/course';
 import {AppState} from '../../reducers';
 import {Store} from '@ngrx/store';
 import {CourseEntityService} from '../services/course-entity.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'course-dialog',
@@ -12,11 +13,16 @@ import {CourseEntityService} from '../services/course-entity.service';
 })
 export class EditCourseDialogComponent {
 
+  form: FormGroup;
+
   dialogTitle: string;
 
   course: Course;
 
+  mode: 'create' | 'update';
+
   constructor(
+    private fb: FormBuilder,
     private store: Store<AppState>,
     private dialogRef: MatDialogRef<EditCourseDialogComponent>,
     @Inject(MAT_DIALOG_DATA) data,
@@ -24,18 +30,39 @@ export class EditCourseDialogComponent {
 
     this.dialogTitle = data.dialogTitle;
     this.course = data.course;
+    this.mode = data.mode;
+
+    this.form = this.fb.group({
+      description: [this.course.description, Validators.required],
+      category: [this.course.category, Validators.required],
+      longDescription: [this.course.longDescription, Validators.required],
+      promo: [this.course.promo, []]
+    });
 
   }
 
-  close() {
+  onClose() {
     this.dialogRef.close();
   }
 
-  onCourseChanged(course: Course) {
+  onSave() {
 
-    this.coursesService.update(course);
+    const course = {
+      ...this.course,
+      ...this.form.value
+    };
 
-    this.dialogRef.close();
+    if (this.mode == 'update') {
+
+      this.coursesService.update(course);
+
+      this.dialogRef.close();
+
+    }
+    else if (this.mode == 'create') {
+
+    }
+
   }
 
 }

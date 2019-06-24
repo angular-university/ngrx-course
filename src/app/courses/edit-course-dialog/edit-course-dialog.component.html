@@ -1,12 +1,69 @@
 
+<h2 mat-dialog-title>{{dialogTitle}}</h2>
 
-<course-form
-  [course]="course"
-  [title]="dialogTitle"
-  (close)="close()"
-  (courseChanged)="onCourseChanged($event)">
+<mat-dialog-content>
 
-</course-form>
+  <ng-container *ngIf="form">
+
+    <ng-container [formGroup]="form">
+
+      <mat-form-field>
+
+        <input matInput
+               placeholder="Course Description"
+               formControlName="description">
+
+      </mat-form-field>
+
+      <mat-form-field>
+
+        <mat-select placeholder="Select category"
+                    formControlName="category">
+
+          <mat-option value="BEGINNER">
+            Beginner</mat-option>
+          <mat-option value="INTERMEDIATE">
+            Intermediate</mat-option>
+          <mat-option value="ADVANCED">
+            Advanced</mat-option>
+
+        </mat-select>
+
+      </mat-form-field>
+
+      <mat-slide-toggle formControlName="promo">Promotion On</mat-slide-toggle>
+
+
+      <mat-form-field>
+
+        <textarea matInput placeholder="Description"
+                  formControlName="longDescription">
+
+        </textarea>
+
+      </mat-form-field>
+
+    </ng-container>
+
+
+  </ng-container>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+
+  <button mat-raised-button (click)="onClose()">
+    Close
+  </button>
+
+  <button mat-raised-button color="primary"
+          [disabled]="!form?.valid"
+          (click)="onSave()">
+    Save
+  </button>
+
+</mat-dialog-actions>
+
 
 
 

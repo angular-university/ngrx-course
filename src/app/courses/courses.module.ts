@@ -17,7 +17,6 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatTableModule} from '@angular/material/table';
 import {MatTabsModule} from '@angular/material/tabs';
 import {ReactiveFormsModule} from '@angular/forms';
-import {MatMenuModule} from '@angular/material/menu';
 import {MatMomentDateModule} from '@angular/material-moment-adapter';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
@@ -31,7 +30,6 @@ import {CourseDataService} from './services/course-data.service';
 import {EntityDataModule, EntityDataService, EntityDefinitionService, EntityMetadataMap} from '@ngrx/data';
 import {Course} from './model/course';
 import {CourseEntityService} from './services/course-entity.service';
-import {CourseFormComponent} from './course-form/course-form.component';
 
 
 export const coursesRoutes: Routes = [
@@ -95,8 +93,7 @@ const entityMetadata: EntityMetadataMap = {
     HomeComponent,
     CoursesCardListComponent,
     EditCourseDialogComponent,
-    CourseComponent,
-    CourseFormComponent
+    CourseComponent
   ],
   exports: [
     HomeComponent,
