@@ -33,7 +33,6 @@ export class CoursesCardListComponent implements OnInit {
 
         this.dialog.open(EditCourseDialogComponent, dialogConfig);
 
-
     }
 
 }

@@ -1,34 +1,40 @@
-
 <div class="courses-panel">
+
+  <div class="header">
 
     <h2 class="title">All Courses</h2>
 
-    <div class="counters">
-        <p>In Promo: {{promoTotal$ | async}}</p>
-    </div>
+    <button mat-mini-fab>
+      <mat-icon class="add-course-btn" (click)="onAddCourse()">add</mat-icon>
+    </button>
 
-    <mat-tab-group>
+  </div>
 
-        <mat-tab label="Beginners">
+  <div class="counters">
+    <p>In Promo: {{promoTotal$ | async}}</p>
+  </div>
 
-            <courses-card-list
-                    [courses]="beginnerCourses$ | async">
+  <mat-tab-group>
 
-            </courses-card-list>
+    <mat-tab label="Beginners">
 
-        </mat-tab>
+      <courses-card-list
+        [courses]="beginnerCourses$ | async">
 
-        <mat-tab label="Advanced">
+      </courses-card-list>
 
-            <courses-card-list
-                    [courses]="advancedCourses$ | async"
+    </mat-tab>
 
-            ></courses-card-list>
+    <mat-tab label="Advanced">
 
-        </mat-tab>
+      <courses-card-list
+        [courses]="advancedCourses$ | async"
 
-    </mat-tab-group>
+      ></courses-card-list>
 
+    </mat-tab>
+
+  </mat-tab-group>
 
 
 </div>

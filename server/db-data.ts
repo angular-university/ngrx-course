@@ -15,7 +15,6 @@ export const COURSES: any = {
     description: 'NgRx In Depth',
     longDescription: 'Learn the modern Ngrx Ecosystem, including NgRx Data, Store, Effects, Router Store, Ngrx Entity, and Dev Tools.',
     iconUrl: 'https://angular-university.s3-us-west-1.amazonaws.com/course-images/ngrx-v2.png',
-    courseListIcon: 'https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png',
     category: 'BEGINNER',
     lessonsCount: 10,
     seqNo: 0,
@@ -38,7 +37,6 @@ export const COURSES: any = {
     description: 'RxJs In Practice Course',
     longDescription: 'Understand the RxJs Observable pattern, learn the RxJs Operators via practical examples',
     iconUrl: 'https://s3-us-west-1.amazonaws.com/angular-university/course-images/rxjs-in-practice-course.png',
-    courseListIcon: 'https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png',
     category: 'BEGINNER',
     lessonsCount: 10,
     seqNo: 2,
@@ -56,17 +54,21 @@ export const COURSES: any = {
     url: 'serverless-angular'
   },
 
+  /*
+
+
   5: {
     id: 5,
     description: 'Angular for Beginners',
-    longDescription: 'Establish a solid layer of fundamentals, learn what\'s under the hood of Angular',
+    longDescription: "Establish a solid layer of fundamentals, learn what's under the hood of Angular",
     iconUrl: 'https://angular-academy.s3.amazonaws.com/thumbnails/angular2-for-beginners-small-v2.png',
-    courseListIcon: 'https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png',
     category: 'BEGINNER',
     lessonsCount: 10,
     seqNo: 5,
     url: 'angular-for-beginners'
   },
+
+*/
 
   12: {
     id: 12,
@@ -84,7 +86,6 @@ export const COURSES: any = {
     description: 'Angular Security Course - Web Security Fundamentals',
     longDescription: 'Learn Web Security Fundamentals and apply them to defend an Angular / Node Application from multiple types of attacks.',
     iconUrl: 'https://s3-us-west-1.amazonaws.com/angular-university/course-images/security-cover-small-v2.png',
-    courseListIcon: 'https://s3-us-west-1.amazonaws.com/angular-university/course-images/lock-v2.png',
     category: 'ADVANCED',
     lessonsCount: 11,
     seqNo: 7,
@@ -96,7 +97,6 @@ export const COURSES: any = {
     description: 'Angular PWA - Progressive Web Apps Course',
     longDescription: 'Learn Angular Progressive Web Applications, build the future of the Web Today.',
     iconUrl: 'https://s3-us-west-1.amazonaws.com/angular-university/course-images/angular-pwa-course.png',
-    courseListIcon: 'https://s3-us-west-1.amazonaws.com/angular-university/course-images/alien.png',
     category: 'ADVANCED',
     lessonsCount: 8,
     seqNo: 8,
@@ -108,7 +108,6 @@ export const COURSES: any = {
     description: 'Angular Advanced Library Laboratory: Build Your Own Library',
     longDescription: 'Learn Advanced Angular functionality typically used in Library Development. Advanced Components, Directives, Testing, Npm',
     iconUrl: 'https://angular-academy.s3.amazonaws.com/thumbnails/advanced_angular-small-v3.png',
-    courseListIcon: 'https://angular-academy.s3.amazonaws.com/thumbnails/angular-advanced-lesson-icon.png',
     category: 'ADVANCED',
     seqNo: 9,
     url: 'angular-advanced-course'
@@ -119,7 +118,6 @@ export const COURSES: any = {
     description: 'The Complete Typescript Course',
     longDescription: 'Complete Guide to Typescript From Scratch: Learn the language in-depth and use it to build a Node REST API.',
     iconUrl: 'https://angular-academy.s3.amazonaws.com/thumbnails/typescript-2-small.png',
-    courseListIcon: 'https://angular-academy.s3.amazonaws.com/thumbnails/typescript-2-lesson.png',
     category: 'BEGINNER',
     seqNo: 10,
     url: 'typescript-course'
@@ -130,7 +128,6 @@ export const COURSES: any = {
     description: 'Rxjs and Reactive Patterns Angular Architecture Course',
     longDescription: 'Learn the core RxJs Observable Pattern as well and many other Design Patterns for building Reactive Angular Applications.',
     iconUrl: 'https://s3-us-west-1.amazonaws.com/angular-academy/blog/images/rxjs-reactive-patterns-small.png',
-    courseListIcon: 'https://angular-academy.s3.amazonaws.com/course-logos/observables_rxjs.png',
     category: 'BEGINNER',
     seqNo: 11,
     url: 'rxjs-patterns-course'

@@ -5,6 +5,7 @@ import {AppState} from '../../reducers';
 import {Store} from '@ngrx/store';
 import {CourseEntityService} from '../services/course-entity.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'course-dialog',
@@ -21,6 +22,8 @@ export class EditCourseDialogComponent {
 
   mode: 'create' | 'update';
 
+  loading$:Observable<boolean>;
+
   constructor(
     private fb: FormBuilder,
     private store: Store<AppState>,
@@ -32,13 +35,26 @@ export class EditCourseDialogComponent {
     this.course = data.course;
     this.mode = data.mode;
 
-    this.form = this.fb.group({
-      description: [this.course.description, Validators.required],
-      category: [this.course.category, Validators.required],
-      longDescription: [this.course.longDescription, Validators.required],
-      promo: [this.course.promo, []]
-    });
+    this.loading$ = this.coursesService.loading$;
 
+    const formControls = {
+      description: ['', Validators.required],
+      category: ['', Validators.required],
+      longDescription: ['', Validators.required],
+      promo: ['', []]
+    };
+
+    if (this.mode == 'update') {
+      this.form = this.fb.group(formControls);
+      this.form.patchValue({...data.course});
+    }
+    else if (this.mode == 'create') {
+      this.form = this.fb.group({
+        ...formControls,
+        url: ['', Validators.required],
+        iconUrl: ['', Validators.required]
+      });
+    }
   }
 
   onClose() {
@@ -60,6 +76,19 @@ export class EditCourseDialogComponent {
 
     }
     else if (this.mode == 'create') {
+
+      this.coursesService.add(course)
+        .subscribe(
+          (val) => {
+
+            console.log("New Course Created", val);
+
+            this.dialogRef.close();
+          },
+          err => {
+            console.log("Error creating course: ", err);
+          }
+        );
 
     }
 

@@ -2,6 +2,8 @@
 
 .title {
     text-align: center;
+    margin-right: 15px;
+
 }
 
 .courses-panel {
@@ -21,3 +23,12 @@
 h2 {
   font-family: "Roboto";
 }
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+

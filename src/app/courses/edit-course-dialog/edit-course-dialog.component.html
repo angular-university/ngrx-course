@@ -15,6 +15,26 @@
 
       </mat-form-field>
 
+      <ng-container *ngIf="mode == 'create'">
+
+        <mat-form-field>
+
+          <input matInput
+                 placeholder="Course Url"
+                 formControlName="url">
+
+        </mat-form-field>
+
+        <mat-form-field>
+
+          <input matInput
+                 placeholder="Course Icon Url"
+                 formControlName="iconUrl">
+
+        </mat-form-field>
+
+      </ng-container>
+
       <mat-form-field>
 
         <mat-select placeholder="Select category"
@@ -57,7 +77,7 @@
   </button>
 
   <button mat-raised-button color="primary"
-          [disabled]="!form?.valid"
+          [disabled]="!form?.valid || (this.loading$ | async)"
           (click)="onSave()">
     Save
   </button>

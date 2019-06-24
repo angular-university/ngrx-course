@@ -3,8 +3,13 @@ import {Course} from "../model/course";
 import {Observable} from "rxjs";
 import {AppState} from '../../reducers';
 import {createSelector, select, Store} from '@ngrx/store';
-import {EntityCollectionService, EntityServices} from '@ngrx/data';
 import {CourseEntityService} from '../services/course-entity.service';
+import {defaultDialogConfig} from '../../shared/default-dialog-config';
+import {EditCourseDialogComponent} from '../edit-course-dialog/edit-course-dialog.component';
+import {MatDialog} from '@angular/material';
+
+
+
 @Component({
     selector: 'home',
     templateUrl: './home.component.html',
@@ -21,7 +26,8 @@ export class HomeComponent implements OnInit {
 
     constructor(
       private store: Store<AppState>,
-      private coursesService: CourseEntityService) {
+      private coursesService: CourseEntityService,
+      private dialog: MatDialog) {
 
     }
 
@@ -52,5 +58,18 @@ export class HomeComponent implements OnInit {
         this.promoTotal$ = this.store.pipe(select(selectPromoTotal));
 
     }
+
+  onAddCourse() {
+
+    const dialogConfig = defaultDialogConfig();
+
+    dialogConfig.data = {
+      dialogTitle:"Create Course",
+      mode: 'create'
+    };
+
+    this.dialog.open(EditCourseDialogComponent, dialogConfig);
+
+  }
 
 }
