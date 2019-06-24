@@ -5,7 +5,7 @@ import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import {Course} from "../model/course";
-import {CoursesService} from "../services/courses.service";
+import {CoursesHttpService} from "../services/courses-http.service";
 import {debounceTime, distinctUntilChanged, startWith, tap, delay} from 'rxjs/operators';
 import {merge, fromEvent, Observable} from "rxjs";
 import {LessonsDataSource} from "../services/lessons.datasource";

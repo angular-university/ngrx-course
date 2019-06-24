@@ -4,7 +4,7 @@
 import {CollectionViewer, DataSource} from "@angular/cdk/collections";
 import {Observable, BehaviorSubject, of} from "rxjs";
 import {Lesson} from "../model/lesson";
-import {CoursesService} from "./courses.service";
+import {CoursesHttpService} from "./courses-http.service";
 import {catchError, finalize, tap} from 'rxjs/operators';
 import {AppState} from '../../reducers';
 import {select, Store} from '@ngrx/store';

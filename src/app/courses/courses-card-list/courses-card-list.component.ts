@@ -1,7 +1,7 @@
 import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
 import {Course} from "../model/course";
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
-import {CourseDialogComponent} from "../course-dialog/course-dialog.component";
+import {EditCourseDialogComponent} from "../course-dialog/edit-course-dialog.component";
 import {defaultDialogConfig} from '../../shared/default-dialog-config';
 
 @Component({
@@ -27,11 +27,10 @@ export class CoursesCardListComponent implements OnInit {
 
         dialogConfig.data = {
           dialogTitle:"Edit Course",
-          mode: 'update',
           course
         };
 
-        this.dialog.open(CourseDialogComponent, dialogConfig);
+        this.dialog.open(EditCourseDialogComponent, dialogConfig);
 
 
     }

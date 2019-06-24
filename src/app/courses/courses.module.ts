@@ -2,9 +2,9 @@ import {ModuleWithProviders, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HomeComponent} from './home/home.component';
 import {CoursesCardListComponent} from './courses-card-list/courses-card-list.component';
-import {CourseDialogComponent} from './course-dialog/course-dialog.component';
+import {EditCourseDialogComponent} from './course-dialog/edit-course-dialog.component';
 import {CoursesResolver} from './services/courses-resolver.service';
-import {CoursesService} from './services/courses.service';
+import {CoursesHttpService} from './services/courses-http.service';
 import {CourseComponent} from './course/course.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatDialogModule} from '@angular/material/dialog';
@@ -31,6 +31,7 @@ import {CourseDataService} from './services/course-data.service';
 import {EntityDataModule, EntityDataService, EntityDefinitionService, EntityMetadataMap} from '@ngrx/data';
 import {Course} from './model/course';
 import {CourseEntityService} from './services/course-entity.service';
+import {CourseFormComponent} from './course-form/course-form.component';
 
 
 export const coursesRoutes: Routes = [
@@ -90,11 +91,22 @@ const entityMetadata: EntityMetadataMap = {
     StoreModule.forFeature('lessons', lessonsReducer),
     EffectsModule.forFeature([CourseEffects])
   ],
-  declarations: [HomeComponent, CoursesCardListComponent, CourseDialogComponent, CourseComponent],
-  exports: [HomeComponent, CoursesCardListComponent, CourseDialogComponent, CourseComponent],
-  entryComponents: [CourseDialogComponent],
+  declarations: [
+    HomeComponent,
+    CoursesCardListComponent,
+    EditCourseDialogComponent,
+    CourseComponent,
+    CourseFormComponent
+  ],
+  exports: [
+    HomeComponent,
+    CoursesCardListComponent,
+    EditCourseDialogComponent,
+    CourseComponent
+  ],
+  entryComponents: [EditCourseDialogComponent],
   providers: [
-    CoursesService,
+    CoursesHttpService,
     CourseDataService,
     CoursesResolver,
     CourseEntityService

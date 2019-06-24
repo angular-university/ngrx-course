@@ -1,0 +1,25 @@
+
+<h2 mat-dialog-title>{{dialogTitle}}</h2>
+
+
+<mat-dialog-content>
+
+  <course-form [course]="course"></course-form>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+
+    <button mat-raised-button (click)="close()">
+        Close
+    </button>
+
+    <button mat-raised-button color="primary"
+            [disabled]="!courseForm?.form?.valid"
+            (click)="save()">
+        Save
+    </button>
+
+</mat-dialog-actions>
+
+

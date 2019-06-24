@@ -5,7 +5,7 @@ import {Injectable} from "@angular/core";
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from "@angular/router";
 import {Course} from "../model/course";
 import {Observable} from "rxjs";
-import {CoursesService} from "./courses.service";
+import {CoursesHttpService} from "./courses-http.service";
 import {AppState} from "../../reducers";
 import {select, Store} from "@ngrx/store";
 import {filter, first, tap} from "rxjs/operators";
@@ -19,7 +19,7 @@ export class CoursesResolver implements Resolve<boolean> {
     coursesEntityService: EntityCollectionService<Course>;
 
     constructor(
-        private coursesService:CoursesService,
+        private coursesService:CoursesHttpService,
         private store: Store<AppState>,
           private entityServices: EntityServices) {
 

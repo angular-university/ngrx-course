@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {of} from 'rxjs';
 import {catchError, map, mergeMap} from 'rxjs/operators';
-import {CoursesService} from './services/courses.service';
+import {CoursesHttpService} from './services/courses-http.service';
 import {AppState} from '../reducers';
 import {select, Store} from '@ngrx/store';
 import {CourseActions} from './action-types';
@@ -33,7 +33,7 @@ export class CourseEffects {
 
   constructor(
     private actions$: Actions,
-    private coursesService: CoursesService,
+    private coursesService: CoursesHttpService,
     private store: Store<AppState>) {
 
   }
