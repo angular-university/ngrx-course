@@ -12,7 +12,7 @@ export const COURSES: any = {
 
   4: {
     id: 4,
-    description: 'NgRx In Depth',
+    description: 'NgRx (with NgRx Data) - The Complete Guide',
     longDescription: 'Learn the modern Ngrx Ecosystem, including NgRx Data, Store, Effects, Router Store, Ngrx Entity, and Dev Tools.',
     iconUrl: 'https://angular-university.s3-us-west-1.amazonaws.com/course-images/ngrx-v2.png',
     category: 'BEGINNER',

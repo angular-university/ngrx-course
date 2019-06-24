@@ -1,4 +1,4 @@
-import {ModuleWithProviders, NgModule} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HomeComponent} from './home/home.component';
 import {CoursesCardListComponent} from './courses-card-list/courses-card-list.component';
@@ -22,14 +22,12 @@ import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {RouterModule, Routes} from '@angular/router';
-import {StoreModule} from '@ngrx/store';
-import {EffectsModule} from '@ngrx/effects';
-import {CourseEffects} from './course.effects';
-import {lessonsReducer} from './lessons.reducers';
 import {CourseDataService} from './services/course-data.service';
-import {EntityDataModule, EntityDataService, EntityDefinitionService, EntityMetadataMap} from '@ngrx/data';
+import { EntityDataService, EntityDefinitionService, EntityMetadataMap} from '@ngrx/data';
 import {Course} from './model/course';
 import {CourseEntityService} from './services/course-entity.service';
+import {LessonEntityService} from './services/lesson-entity.service';
+import {Lesson} from './model/lesson';
 
 
 export const coursesRoutes: Routes = [
@@ -52,18 +50,50 @@ export const coursesRoutes: Routes = [
 
 
 
-export function compareCourses(c1:Course, c2: Course) {
-  return c1.seqNo - c2.seqNo;
+function compareCourses(c1:Course, c2: Course) {
+
+  const compare = c1.seqNo - c2.seqNo;
+
+  if (compare > 0) {
+    return 1;
+  }
+  else if ( compare < 0) {
+    return -1;
+  }
+  else return 0;
+
 }
+
+
+function compareLessons(l1:Lesson, l2: Lesson) {
+
+  const compareCourses = l1.courseId - l2.courseId;
+
+  if (compareCourses > 0) {
+    return 1;
+  }
+  else if (compareCourses < 0){
+    return -1;
+  }
+  else {
+    return l1.seqNo - l2.seqNo;
+  }
+
+}
+
 
 
 const entityMetadata: EntityMetadataMap = {
   Course: {
+
     sortComparer: compareCourses,
     entityDispatcherOptions: {
       optimisticUpdate: true
     }
   },
+  Lesson: {
+    sortComparer: compareLessons
+  }
 };
 
 
@@ -85,9 +115,7 @@ const entityMetadata: EntityMetadataMap = {
     MatDatepickerModule,
     MatMomentDateModule,
     ReactiveFormsModule,
-    RouterModule.forChild(coursesRoutes),
-    StoreModule.forFeature('lessons', lessonsReducer),
-    EffectsModule.forFeature([CourseEffects])
+    RouterModule.forChild(coursesRoutes)
   ],
   declarations: [
     HomeComponent,
@@ -106,7 +134,8 @@ const entityMetadata: EntityMetadataMap = {
     CoursesHttpService,
     CourseDataService,
     CoursesResolver,
-    CourseEntityService
+    CourseEntityService,
+    LessonEntityService
   ]
 })
 export class CoursesModule {
@@ -119,9 +148,6 @@ export class CoursesModule {
     eds.registerMetadataMap(entityMetadata);
 
     entityDataService.registerService('Course', courseDataService);
-
-
-
 
   }
 

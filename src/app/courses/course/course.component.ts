@@ -2,11 +2,10 @@ import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Course} from '../model/course';
 import {Observable} from 'rxjs';
-import {AppState} from '../../reducers';
-import {createSelector, select, Store} from '@ngrx/store';
-import {PageQuery} from '../course.actions';
 import {Lesson} from '../model/lesson';
 import {CourseEntityService} from '../services/course-entity.service';
+import {concatMap, map} from 'rxjs/operators';
+import {LessonEntityService} from '../services/lesson-entity.service';
 
 
 @Component({
@@ -18,7 +17,7 @@ export class CourseComponent implements OnInit {
 
   course$: Observable<Course>;
 
-  lessons: Lesson[] = [];
+  lessons$: Observable<Lesson[]>;
 
   displayedColumns = ['seqNo', 'description', 'duration'];
 
@@ -27,8 +26,8 @@ export class CourseComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private store: Store<AppState>,
-    private coursesService: CourseEntityService) {
+    private coursesService: CourseEntityService,
+    private lessonsService: LessonEntityService) {
 
   }
 
@@ -40,42 +39,26 @@ export class CourseComponent implements OnInit {
 
     const selectAllCourses = this.coursesService.selectors.selectEntities;
 
-    const selectCourseByUrl = createSelector(
-      selectAllCourses,
-      courses => courses.find(course => course.url == courseUrl)
-    );
+    this.course$ = this.coursesService.entities$
+      .pipe(
+        map(courses => courses.find(course => course.url == courseUrl))
+      );
 
-    this.course$ = this.store.pipe(select(selectCourseByUrl));
+    this.lessons$ = this.course$
+      .pipe(
+        concatMap(course => this.lessonsService.getWithQuery({
+          "courseId": course.id.toString(),
+          "pageIndex": "0",
+          "pageSize": "3"
+        }))
 
-    /*
-    const initialPage: PageQuery = {
-      pageIndex: 0,
-      pageSize: 3
-    };
-
-    this.dataSource.loadLessons(courseUrl, initialPage);
-
-    */
+      );
 
   }
-
-
-/*
-  loadLessonsPage() {
-
-    const newPage: PageQuery = {
-      pageIndex: this.paginator.pageIndex,
-      pageSize: this.paginator.pageSize
-    };
-
-    this.dataSource.loadLessons(this.course.id, newPage);
-
-  }
-
-*/
 
 
   loadMore() {
 
   }
+
 }
