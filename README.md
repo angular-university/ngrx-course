@@ -1,16 +1,14 @@
 
-## Angular Ngrx Course
+## Ngrx (with NgRx Data) - The Complete Guide
 
-This repository contains the code of the [Angular Ngrx Course](https://angular-university.io/course/angular-ngrx-course).
+This repository contains the code of the video course [Ngrx (with NgRx Data) - The Complete Guide](https://angular-university.io/course/ngrx-course).
 
-This course repository is updated to Angular v8, and there is a  package-lock.json file available, for avoiding semantic versioning installation issues.
+This course repository is updated to Angular v8:
 
-![Angular Ngrx Course](https://s3-us-west-1.amazonaws.com/angular-university/course-images/angular-ngrx-course.png)
+![Ngrx (with NgRx Data) - The Complete Guide](https://angular-university.s3-us-west-1.amazonaws.com/course-images/ngrx-v2.png)
 
 
 # Installation pre-requisites
-
-IMPORTANT: Please use NPM 5 or above, to make sure the package-lock.json is used.
 
 For running this project we need and npm installed on our machine. These are some tutorials to install node in different operating systems:
 
@@ -36,14 +34,12 @@ We can install the master branch using the following commands:
     
 This repository is made of several separate npm modules, that are installable separately. For example, to run the au-input module, we can do the following:
     
-    cd angular-ngrx-course
+    cd ngrx-course
     npm install
 
 Its also possible to install the modules as usual using npm:
 
     npm install 
-
-NPM 5 or above has the big advantage that if you use it you will be installing the exact same dependencies than I installed in my machine, so you wont run into issues caused by semantic versioning updates.
 
 This should take a couple of minutes. If there are issues, please post the complete error message in the Questions section of the course.
 
@@ -73,15 +69,46 @@ At certain points along the course, you will be asked to checkout other remote b
 
     git branch -a
 
-  The remote branches have their starting in origin, such as for example 1-navigation-and-containers.
+  The remote branches have their starting in origin, such as for example 1-start.
 
 We can checkout the remote branch and start tracking it with a local branch that has the same name, by using the following command:
 
-      git checkout -b 1-auth origin/1-auth
+      git checkout -b 1-start 
 
 It's also possible to download a ZIP file for a given branch,  using the branch dropdown on this page on the top left, and then selecting the Clone or Download / Download as ZIP button.
 
 # Other Courses
+
+# Angular Core Deep Dive Course
+
+If you are looking for the [Angular Core Deep Dive Course](https://angular-university.io/course/angular-course), the repo with the full code can be found here:
+
+![Angular Core Deep Dive](https://s3-us-west-1.amazonaws.com/angular-university/course-images/angular-core-in-depth-small.png)
+
+# RxJs In Practice
+
+If you are looking for the [RxJs In Practice](https://angular-university.io/course/rxjs-course), the repo with the full code can be found here:
+
+![RxJs In Practice Course](https://s3-us-west-1.amazonaws.com/angular-university/course-images/rxjs-in-practice-course.png)
+
+
+# Angular Testing Course
+
+If you are looking for the [Angular Testing Course](https://angular-university.io/course/angular-testing-course), the repo with the full code can be found here:
+
+![Angular Testing Course](https://s3-us-west-1.amazonaws.com/angular-university/course-images/angular-testing-small.png)
+
+# Serverless Angular with Firebase Course
+
+If you are looking for the [Serverless Angular with Firebase Course](https://angular-university.io/course/firebase-course), the repo with the full code can be found here:
+
+![Serverless Angular with Firebase Course](https://s3-us-west-1.amazonaws.com/angular-university/course-images/serverless-angular-small.png)
+
+# Angular Universal Course
+
+If you are looking for the [Angular Universal Course](https://angular-university.io/course/angular-universal-course), the repo with the full code can be found here:
+
+![Angular Universal Course](https://s3-us-west-1.amazonaws.com/angular-university/course-images/angular-universal-small.png)
 
 # Angular PWA Course
 
@@ -115,31 +142,7 @@ If you are looking for the RxJs and Reactive Patterns Angular Architecture Cours
 ![RxJs and Reactive Patterns Angular Architecture Course](https://s3-us-west-1.amazonaws.com/angular-academy/blog/images/rxjs-reactive-patterns-small.png)
 
 
-
-## Angular Ngrx Reactive Extensions Architecture Course
-
-If you are looking for the Angular Ngrx Reactive Extensions Architecture Course code, the repo with the full code can be found here:
-
-[Angular Ngrx Reactive Extensions Architecture Course](https://angular-university.io/course/angular2-ngrx)
-
-[Github repo for this course](https://github.com/angular-university/ngrx-course)
-
-![Angular Ngrx Course](https://angular-academy.s3.amazonaws.com/thumbnails/ngrx-angular.png)
-
-
-
-## Angular 2 and Firebase - Build a Web Application Course
-
-If you are looking for the Angular 2 and Firebase - Build a Web Application Course code, the repo with the full code can be found here:
-
-[Angular 2 and Firebase - Build a Web Application](https://angular-university.io/course/build-an-application-with-angular2)
-
-[Github repo for this course](https://github.com/angular-university/angular-firebase-app)
-
-![Angular firebase course](https://angular-academy.s3.amazonaws.com/thumbnails/angular_app-firebase-small.jpg)
-
-
-## Complete Typescript 2 Course - Build A REST API
+## Complete Typescript Course - Build A REST API
 
 If you are looking for the Complete Typescript 2 Course - Build a REST API, the repo with the full code can be found here:
 
