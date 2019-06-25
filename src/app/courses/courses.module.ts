@@ -24,10 +24,10 @@ import {MatIconModule} from '@angular/material/icon';
 import {RouterModule, Routes} from '@angular/router';
 import {CourseDataService} from './services/course-data.service';
 import { EntityDataService, EntityDefinitionService, EntityMetadataMap} from '@ngrx/data';
-import {Course} from './model/course';
+import {compareCourses, Course} from './model/course';
 import {CourseEntityService} from './services/course-entity.service';
 import {LessonEntityService} from './services/lesson-entity.service';
-import {Lesson} from './model/lesson';
+import {compareLessons, Lesson} from './model/lesson';
 
 
 export const coursesRoutes: Routes = [
@@ -47,40 +47,6 @@ export const coursesRoutes: Routes = [
     }
   }
 ];
-
-
-
-function compareCourses(c1:Course, c2: Course) {
-
-  const compare = c1.seqNo - c2.seqNo;
-
-  if (compare > 0) {
-    return 1;
-  }
-  else if ( compare < 0) {
-    return -1;
-  }
-  else return 0;
-
-}
-
-
-function compareLessons(l1:Lesson, l2: Lesson) {
-
-  const compareCourses = l1.courseId - l2.courseId;
-
-  if (compareCourses > 0) {
-    return 1;
-  }
-  else if (compareCourses < 0){
-    return -1;
-  }
-  else {
-    return l1.seqNo - l2.seqNo;
-  }
-
-}
-
 
 
 const entityMetadata: EntityMetadataMap = {

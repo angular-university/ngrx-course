@@ -19,9 +19,9 @@ import {environment} from '../environments/environment';
 import {RouterState, StoreRouterConnectingModule} from '@ngrx/router-store';
 
 import {EffectsModule} from '@ngrx/effects';
-import {reducers} from './reducers';
 import {AuthGuard} from './auth/auth.guard';
 import {EntityDataModule} from '@ngrx/data';
+import {reducers} from './reducers/reducers';
 
 
 const routes: Routes = [

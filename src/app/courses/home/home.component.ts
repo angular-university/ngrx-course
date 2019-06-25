@@ -1,13 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {Course} from "../model/course";
 import {Observable} from "rxjs";
-import {AppState} from '../../reducers';
-import {createSelector, select, Store} from '@ngrx/store';
 import {CourseEntityService} from '../services/course-entity.service';
-import {defaultDialogConfig} from '../../shared/default-dialog-config';
+import {defaultDialogConfig} from '../shared/default-dialog-config';
 import {EditCourseDialogComponent} from '../edit-course-dialog/edit-course-dialog.component';
 import {MatDialog} from '@angular/material';
-import {map, tap} from 'rxjs/operators';
+import {map} from 'rxjs/operators';
 
 
 
