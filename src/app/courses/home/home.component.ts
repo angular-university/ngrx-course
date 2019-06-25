@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Course} from "../model/course";
 import {Observable} from "rxjs";
-import {CourseEntityService} from '../services/course-entity.service';
 import {defaultDialogConfig} from '../shared/default-dialog-config';
 import {EditCourseDialogComponent} from '../edit-course-dialog/edit-course-dialog.component';
 import {MatDialog} from '@angular/material';
@@ -24,29 +23,11 @@ export class HomeComponent implements OnInit {
 
 
     constructor(
-      private coursesService: CourseEntityService,
       private dialog: MatDialog) {
 
     }
 
     ngOnInit() {
-
-    this.beginnerCourses$ = this.coursesService.entities$
-          .pipe(
-            map(courses => courses.filter(course => course.category === 'BEGINNER'))
-          );
-
-
-        this.advancedCourses$ = this.coursesService.entities$
-          .pipe(
-            map(courses => courses.filter(course => course.category === 'ADVANCED'))
-          );
-
-
-        this.promoTotal$ = this.coursesService.entities$
-          .pipe(
-            map( courses => courses.filter(course => course.promo).length)
-          );
 
     }
 

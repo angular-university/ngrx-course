@@ -19,16 +19,13 @@ import {environment} from '../environments/environment';
 import {RouterState, StoreRouterConnectingModule} from '@ngrx/router-store';
 
 import {EffectsModule} from '@ngrx/effects';
-import {AuthGuard} from './auth/auth.guard';
 import {EntityDataModule} from '@ngrx/data';
-import {reducers} from './reducers/reducers';
 
 
 const routes: Routes = [
   {
     path: 'courses',
-    loadChildren: () => import('./courses/courses.module').then(m => m.CoursesModule),
-    canActivate: [AuthGuard],
+    loadChildren: () => import('./courses/courses.module').then(m => m.CoursesModule)
   },
   {
     path: '**',
@@ -52,25 +49,7 @@ const routes: Routes = [
     MatSidenavModule,
     MatListModule,
     MatToolbarModule,
-    AuthModule.forRoot(),
-    StoreModule.forRoot(reducers, {
-      runtimeChecks: {
-        strictStateImmutability: true,
-        strictActionImmutability: true,
-        strictActionSerializability: true,
-        strictStateSerializability: true
-      }
-    }),
-    StoreDevtoolsModule.instrument({
-      maxAge: 25,
-      logOnly: environment.production,
-    }),
-    EffectsModule.forRoot([]),
-    StoreRouterConnectingModule.forRoot({
-      stateKey: 'router',
-      routerState: RouterState.Minimal,
-    }),
-    EntityDataModule.forRoot({})
+    AuthModule.forRoot()
   ],
   bootstrap: [AppComponent]
 })
