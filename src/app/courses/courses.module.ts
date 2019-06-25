@@ -34,7 +34,7 @@ export const coursesRoutes: Routes = [
 
   },
   {
-    path: ':id',
+    path: ':courseUrl',
     component: CourseComponent
   }
 ];
