@@ -22,6 +22,7 @@ import {EffectsModule} from '@ngrx/effects';
 import {AuthGuard} from './auth/auth.guard';
 import {EntityDataModule} from '@ngrx/data';
 import {reducers} from './reducers/reducers';
+import {MatProgressSpinnerModule} from '@angular/material';
 
 
 const routes: Routes = [
@@ -50,6 +51,7 @@ const routes: Routes = [
     MatMenuModule,
     MatIconModule,
     MatSidenavModule,
+    MatProgressSpinnerModule,
     MatListModule,
     MatToolbarModule,
     AuthModule.forRoot(),
