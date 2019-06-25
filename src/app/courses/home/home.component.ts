@@ -32,28 +32,31 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit() {
-
-      const courses$ = this.coursesHttpService.findAllCourses()
-        .pipe(
-          map(courses => courses.sort(compareCourses)),
-          shareReplay()
-        );
-
-      this.loading$ = courses$.pipe(map(courses => !!courses));
-
-      this.beginnerCourses$ = courses$
-        .pipe(
-          map(courses => courses.filter(course => course.category == 'BEGINNER'))
-        );
-
-
-      this.advancedCourses$ = courses$
-        .pipe(
-          map(courses => courses.filter(course => course.category == 'ADVANCED'))
-        );
-
-
+      this.reload();
     }
+
+  reload() {
+
+    const courses$ = this.coursesHttpService.findAllCourses()
+      .pipe(
+        map(courses => courses.sort(compareCourses)),
+        shareReplay()
+      );
+
+    this.loading$ = courses$.pipe(map(courses => !!courses));
+
+    this.beginnerCourses$ = courses$
+      .pipe(
+        map(courses => courses.filter(course => course.category == 'BEGINNER'))
+      );
+
+
+    this.advancedCourses$ = courses$
+      .pipe(
+        map(courses => courses.filter(course => course.category == 'ADVANCED'))
+      );
+
+  }
 
   onAddCourse() {
 
@@ -67,5 +70,6 @@ export class HomeComponent implements OnInit {
     this.dialog.open(EditCourseDialogComponent, dialogConfig);
 
   }
+
 
 }

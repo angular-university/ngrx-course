@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
 import {Course} from "../model/course";
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import {EditCourseDialogComponent} from "../edit-course-dialog/edit-course-dialog.component";
@@ -13,6 +13,9 @@ export class CoursesCardListComponent implements OnInit {
 
     @Input()
     courses: Course[];
+
+    @Output()
+    courseChanged = new EventEmitter();
 
     constructor(
       private dialog: MatDialog ) {
@@ -32,7 +35,9 @@ export class CoursesCardListComponent implements OnInit {
           mode: 'update'
         };
 
-        this.dialog.open(EditCourseDialogComponent, dialogConfig);
+        this.dialog.open(EditCourseDialogComponent, dialogConfig)
+          .afterClosed()
+          .subscribe(() => this.courseChanged.emit());
 
     }
 
