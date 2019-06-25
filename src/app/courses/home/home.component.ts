@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {Course} from "../model/course";
+import {compareCourses, Course} from '../model/course';
 import {Observable} from "rxjs";
 import {defaultDialogConfig} from '../shared/default-dialog-config';
 import {EditCourseDialogComponent} from '../edit-course-dialog/edit-course-dialog.component';
 import {MatDialog} from '@angular/material';
-import {map} from 'rxjs/operators';
+import {map, shareReplay} from 'rxjs/operators';
+import {CoursesHttpService} from '../services/courses-http.service';
 
 
 
@@ -17,17 +18,40 @@ export class HomeComponent implements OnInit {
 
     promoTotal$: Observable<number>;
 
+    loading$: Observable<boolean>;
+
     beginnerCourses$: Observable<Course[]>;
 
     advancedCourses$: Observable<Course[]>;
 
 
     constructor(
-      private dialog: MatDialog) {
+      private dialog: MatDialog,
+      private coursesHttpService: CoursesHttpService) {
 
     }
 
     ngOnInit() {
+
+      const courses$ = this.coursesHttpService.findAllCourses()
+        .pipe(
+          map(courses => courses.sort(compareCourses)),
+          shareReplay()
+        );
+
+      this.loading$ = courses$.pipe(map(courses => !!courses));
+
+      this.beginnerCourses$ = courses$
+        .pipe(
+          map(courses => courses.filter(course => course.category == 'BEGINNER'))
+        );
+
+
+      this.advancedCourses$ = courses$
+        .pipe(
+          map(courses => courses.filter(course => course.category == 'ADVANCED'))
+        );
+
 
     }
 
