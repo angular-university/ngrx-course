@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {select, Store} from "@ngrx/store";
 import {Observable} from "rxjs";
 import {map} from 'rxjs/operators';
-import {Router} from '@angular/router';
+import {NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +11,7 @@ import {Router} from '@angular/router';
 })
 export class AppComponent implements OnInit {
 
+    loading = true;
 
     constructor(private router: Router) {
 
@@ -18,7 +19,24 @@ export class AppComponent implements OnInit {
 
     ngOnInit() {
 
+      this.router.events.subscribe(event  => {
+        switch (true) {
+          case event instanceof NavigationStart: {
+            this.loading = true;
+            break;
+          }
 
+          case event instanceof NavigationEnd:
+          case event instanceof NavigationCancel:
+          case event instanceof NavigationError: {
+            this.loading = false;
+            break;
+          }
+          default: {
+            break;
+          }
+        }
+      });
 
     }
 

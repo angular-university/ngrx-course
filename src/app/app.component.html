@@ -28,6 +28,12 @@
         </button>
     </mat-toolbar>
 
+  <div class="spinner-container" *ngIf="loading">
+
+    <mat-spinner></mat-spinner>
+
+  </div>
+
     <router-outlet></router-outlet>
 
 </mat-sidenav-container>
