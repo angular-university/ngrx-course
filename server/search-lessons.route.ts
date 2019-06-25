@@ -15,7 +15,7 @@ export function searchLessons(req: Request, res: Response) {
 
         const courseId = queryParams.courseId,
             filter = queryParams.filter || '',
-            sortOrder = queryParams.sortOrder,
+            sortOrder = queryParams.sortOrder || 'asc',
             pageNumber = parseInt(queryParams.pageNumber) || 0,
             pageSize = parseInt(queryParams.pageSize);
 
@@ -30,6 +30,8 @@ export function searchLessons(req: Request, res: Response) {
         }
 
         const initialPos = pageNumber * pageSize;
+
+        console.log(`Retrieving lessons page starting at position ${initialPos}, page size ${pageSize} for course ${courseId}`);
 
         const lessonsPage = lessons.slice(initialPos, initialPos + pageSize);
 
