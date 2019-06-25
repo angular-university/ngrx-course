@@ -573,6 +573,35 @@ export const LESSONS = {
     "duration": "7:07",
     "seqNo": 6,
     courseId: 4
+  },
+
+  56: {
+    id: 56,
+    "description": "Dispatching an Action - Implementing the Login Component",
+    "duration": "4:39",
+    "seqNo": 7,
+    courseId: 4
+  },
+  57: {
+    id: 57,
+    "description": "Setting Up the Ngrx DevTools - Demo",
+    "duration": "4:44",
+    "seqNo": 8,
+    courseId: 4
+  },
+  58: {
+    id: 58,
+    "description": "Understanding Reducers - Writing Our First Reducer",
+    "duration": "9:10",
+    "seqNo": 9,
+    courseId: 4
+  },
+  59: {
+    id: 59,
+    "description": "How To Define the Store Initial State",
+    "duration": "9:10",
+    "seqNo": 10,
+    courseId: 4
   }
 
 
