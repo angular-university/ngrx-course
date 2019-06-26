@@ -10,14 +10,22 @@ This course repository is updated to Angular v8 and NgRx 8:
 
 # Installation pre-requisites
 
-For running this project we need and npm installed on our machine. These are some tutorials to install node in different operating systems:
-
-*Its important to install the latest version of Node*
+For taking the course we recommend installing Node 12. These are some tutorials to install node in different operating systems:
 
 - [Install Node and NPM on Windows](https://www.youtube.com/watch?v=8ODS6RM6x7g)
 - [Install Node and NPM on Linux](https://www.youtube.com/watch?v=yUdHk-Dk_BY)
 - [Install Node and NPM on Mac](https://www.youtube.com/watch?v=Imj8PgG3bZU)
 
+To easily switch between node versions on your machine, we recommend using a node virtual environment tool such as [nave](https://www.npmjs.com/package/nave) or [nvm-windows](https://github.com/coreybutler/nvm-windows), depending on your operating system. 
+
+For example, here is how you switch to a new node version using nave:
+
+    # note that you don't even need to update your node version before installing nave
+    npm install -g nave
+    
+    nave use 12.3.1
+    node -v
+    v12.3.1
 
 # Installing the Angular CLI
 
