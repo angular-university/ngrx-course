@@ -56,6 +56,11 @@ export class HomeComponent implements OnInit {
         map(courses => courses.filter(course => course.category == 'ADVANCED'))
       );
 
+    this.promoTotal$ = courses$
+        .pipe(
+            map(courses => courses.filter(course => course.promo).length)
+        );
+
   }
 
   onAddCourse() {
