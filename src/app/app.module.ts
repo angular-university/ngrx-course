@@ -19,47 +19,49 @@ import {environment} from '../environments/environment';
 import {RouterState, StoreRouterConnectingModule} from '@ngrx/router-store';
 
 import {EffectsModule} from '@ngrx/effects';
-import {EntityDataModule} from '@ngrx/data';
 import {MatProgressSpinnerModule} from '@angular/material';
-import { reducers, metaReducers } from './reducers';
+import {metaReducers, reducers} from './reducers';
 import {AuthGuard} from './auth/auth.guard';
 
 
 const routes: Routes = [
-  {
-    path: 'courses',
-    loadChildren: () => import('./courses/courses.module').then(m => m.CoursesModule),
-    canActivate: [AuthGuard]
-  },
-  {
-    path: '**',
-    redirectTo: '/'
-  }
+    {
+        path: 'courses',
+        loadChildren: () => import('./courses/courses.module').then(m => m.CoursesModule),
+        canActivate: [AuthGuard]
+    },
+    {
+        path: '**',
+        redirectTo: '/'
+    }
 ];
 
 
-
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    RouterModule.forRoot(routes),
-    HttpClientModule,
-    MatMenuModule,
-    MatIconModule,
-    MatSidenavModule,
-    MatProgressSpinnerModule,
-    MatListModule,
-    MatToolbarModule,
-    AuthModule.forRoot(),
-    StoreModule.forRoot(reducers, { metaReducers }),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    EffectsModule.forRoot([])
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent
+    ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        RouterModule.forRoot(routes),
+        HttpClientModule,
+        MatMenuModule,
+        MatIconModule,
+        MatSidenavModule,
+        MatProgressSpinnerModule,
+        MatListModule,
+        MatToolbarModule,
+        AuthModule.forRoot(),
+        StoreModule.forRoot(reducers, {metaReducers}),
+        StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
+        EffectsModule.forRoot([]),
+        StoreRouterConnectingModule.forRoot({
+            stateKey: 'router',
+            routerState: RouterState.Minimal
+        })
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 }
