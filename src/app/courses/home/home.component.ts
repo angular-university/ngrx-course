@@ -6,7 +6,6 @@ import {EditCourseDialogComponent} from '../edit-course-dialog/edit-course-dialo
 import {MatDialog} from '@angular/material';
 import {map, shareReplay} from 'rxjs/operators';
 import {CoursesHttpService} from '../services/courses-http.service';
-import {CourseEntityService} from '../services/course-entity.service';
 
 
 
@@ -19,13 +18,16 @@ export class HomeComponent implements OnInit {
 
     promoTotal$: Observable<number>;
 
+    loading$: Observable<boolean>;
+
     beginnerCourses$: Observable<Course[]>;
 
     advancedCourses$: Observable<Course[]>;
 
+
     constructor(
       private dialog: MatDialog,
-      private coursesService: CourseEntityService) {
+      private coursesHttpService: CoursesHttpService) {
 
     }
 
@@ -35,17 +37,26 @@ export class HomeComponent implements OnInit {
 
   reload() {
 
-    this.beginnerCourses$ = this.coursesService.entities$
+    const courses$ = this.coursesHttpService.findAllCourses()
+      .pipe(
+        map(courses => courses.sort(compareCourses)),
+        shareReplay()
+      );
+
+    this.loading$ = courses$.pipe(map(courses => !!courses));
+
+    this.beginnerCourses$ = courses$
       .pipe(
         map(courses => courses.filter(course => course.category == 'BEGINNER'))
       );
 
-    this.advancedCourses$ = this.coursesService.entities$
+
+    this.advancedCourses$ = courses$
       .pipe(
         map(courses => courses.filter(course => course.category == 'ADVANCED'))
       );
 
-    this.promoTotal$ = this.coursesService.entities$
+    this.promoTotal$ = courses$
         .pipe(
             map(courses => courses.filter(course => course.promo).length)
         );
