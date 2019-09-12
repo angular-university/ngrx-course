@@ -22,23 +22,25 @@ export class CoursesHttpService {
             );
     }
 
+    findCourseByUrl(courseUrl: string): Observable<Course> {
+      return this.http.get<Course>(`/api/courses/${courseUrl}`);
+    }
+
     findLessons(
         courseId:number,
         pageNumber = 0, pageSize = 3):  Observable<Lesson[]> {
 
-        return this.http.get('/api/lessons', {
+        return this.http.get<Lesson[]>('/api/lessons', {
             params: new HttpParams()
                 .set('courseId', courseId.toString())
                 .set('sortOrder', 'asc')
                 .set('pageNumber', pageNumber.toString())
                 .set('pageSize', pageSize.toString())
-        }).pipe(
-            map(res =>  res["payload"])
-        );
+        });
     }
 
 
-    saveCourse(courseId: number, changes: Partial<Course>) {
+    saveCourse(courseId: string | number, changes: Partial<Course>) {
         return this.http.put('/api/course/' + courseId, changes);
     }
 

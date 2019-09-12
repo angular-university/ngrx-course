@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
 import {Course} from "../model/course";
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import {EditCourseDialogComponent} from "../edit-course-dialog/edit-course-dialog.component";
@@ -8,16 +8,20 @@ import {CourseEntityService} from '../services/course-entity.service';
 @Component({
     selector: 'courses-card-list',
     templateUrl: './courses-card-list.component.html',
-    styleUrls: ['./courses-card-list.component.css']
+    styleUrls: ['./courses-card-list.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CoursesCardListComponent implements OnInit {
 
     @Input()
     courses: Course[];
 
+    @Output()
+    courseChanged = new EventEmitter();
+
     constructor(
-      private coursesService: CourseEntityService,
-      private dialog: MatDialog ) {
+      private dialog: MatDialog,
+      private courseService: CourseEntityService) {
     }
 
     ngOnInit() {
@@ -34,17 +38,20 @@ export class CoursesCardListComponent implements OnInit {
           mode: 'update'
         };
 
-        this.dialog.open(EditCourseDialogComponent, dialogConfig);
+        this.dialog.open(EditCourseDialogComponent, dialogConfig)
+          .afterClosed()
+          .subscribe(() => this.courseChanged.emit());
 
     }
 
   onDeleteCourse(course:Course) {
 
-      this.coursesService.delete(course)
-        .subscribe(
-          val => console.log("Deleted Course ", val),
-          err => console.log("Error deleting course: ", err)
-        );
+        this.courseService.delete(course)
+            .subscribe(
+                () => console.log("Delete completed"),
+                err => console.log("Deleted failed", err)
+            );
+
 
   }
 

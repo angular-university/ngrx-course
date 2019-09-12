@@ -4,10 +4,16 @@ import {Course} from '../model/course';
 
 
 @Injectable()
-export class CourseEntityService extends EntityCollectionServiceBase<Course> {
+export class CourseEntityService
+    extends EntityCollectionServiceBase<Course> {
 
-  constructor(serviceElementsFactory: EntityCollectionServiceElementsFactory) {
-    super('Course', serviceElementsFactory);
-  }
+    constructor(
+        serviceElementsFactory:
+            EntityCollectionServiceElementsFactory) {
+
+        super('Course', serviceElementsFactory);
+
+    }
 
 }
+

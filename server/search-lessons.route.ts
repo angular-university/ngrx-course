@@ -35,9 +35,6 @@ export function searchLessons(req: Request, res: Response) {
 
         const lessonsPage = lessons.slice(initialPos, initialPos + pageSize);
 
-        setTimeout(() => {
-            res.status(200).json(lessonsPage);
-        },1000);
-
+        res.status(200).json(lessonsPage);
 
 }
