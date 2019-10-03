@@ -8,12 +8,12 @@
                 <span>Courses</span>
             </a>
 
-            <a mat-list-item routerLink="/login">
+            <a mat-list-item routerLink="/login" *ngIf="isLoggedOut$ | async">
                 <mat-icon>account_circle</mat-icon>
                 <span>Login</span>
             </a>
 
-            <a mat-list-item  (click)="logout()">
+            <a mat-list-item (click)="logout()" *ngIf="isLoggedIn$ | async">
                 <mat-icon>exit_to_app</mat-icon>
                 <span>Logout</span>
             </a>
@@ -28,11 +28,11 @@
         </button>
     </mat-toolbar>
 
-  <div class="spinner-container" *ngIf="loading">
+    <div class="spinner-container" *ngIf="loading">
 
-    <mat-spinner></mat-spinner>
+        <mat-spinner></mat-spinner>
 
-  </div>
+    </div>
 
     <router-outlet></router-outlet>
 
