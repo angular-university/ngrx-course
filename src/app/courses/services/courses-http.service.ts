@@ -15,6 +15,10 @@ export class CoursesHttpService {
 
     }
 
+    addCourse(course: Course) {
+        return this.http.post<Course>('/api/course/', course);
+    }
+
     findAllCourses(): Observable<Course[]> {
         return this.http.get('/api/courses')
             .pipe(
@@ -41,8 +45,7 @@ export class CoursesHttpService {
 
 
     saveCourse(courseId: string | number, changes: Partial<Course>) {
-        return this.http.put('/api/course/' + courseId, changes);
+        return this.http.put<Course>('/api/course/' + courseId, changes);
     }
-
 
 }
