@@ -34,3 +34,8 @@ export const areCoursesLoaded = createSelector(
     selectCoursesState,
     state => state.allCoursesLoaded
 );
+
+export const selectCourseSaving = createSelector(
+    selectCoursesState,
+    state => state.saving
+);

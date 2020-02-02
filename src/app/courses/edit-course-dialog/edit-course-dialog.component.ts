@@ -2,12 +2,14 @@ import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Course} from '../model/course';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Observable} from 'rxjs';
+import {Subject, of} from 'rxjs';
 import {CoursesHttpService} from '../services/courses-http.service';
 import {AppState} from '../../reducers';
 import {Store} from '@ngrx/store';
 import {Update} from '@ngrx/entity';
-import {courseUpdated} from '../course.actions';
+import {addCourse, courseUpdated} from '../course.actions';
+import {filter, map, mergeMap, tap} from 'rxjs/operators';
+import {selectCourseSaving} from '../courses.selectors';
 
 @Component({
   selector: 'course-dialog',
@@ -24,7 +26,8 @@ export class EditCourseDialogComponent {
 
   mode: 'create' | 'update';
 
-  loading$:Observable<boolean>;
+  saves = new Subject<any>();
+  saving$ = this.store.select(selectCourseSaving);
 
   constructor(
     private fb: FormBuilder,
@@ -54,30 +57,38 @@ export class EditCourseDialogComponent {
         iconUrl: ['', Validators.required]
       });
     }
+
+    const saved$ = this.saving$.pipe(
+      filter(saving => !saving)
+    );
+    this.saves.pipe(
+      map(_ => this.createSaveAction()),
+      tap(action => this.store.dispatch(action)),
+      mergeMap(_ => this.mode === 'create' ? saved$ : of(true))
+    )
+    // no need to unsubscribe here as stream dies with component
+    .subscribe(_ => {
+      this.dialogRef.close();
+    });
   }
 
   onClose() {
     this.dialogRef.close();
   }
 
-  onSave() {
-
+  private createSaveAction() {
     const course: Course = {
       ...this.course,
       ...this.form.value
     };
-
-    const update: Update<Course> = {
-      id: course.id,
-      changes: course
-    };
-
-    this.store.dispatch(courseUpdated({update}));
-
-    this.dialogRef.close();
-
-
+    if (this.mode === 'update') {
+      const update: Update<Course> = {
+          id: course.id,
+          changes: course
+      };
+      return courseUpdated({update});
+    } else {
+      return addCourse({ course });
+    }
   }
-
-
 }

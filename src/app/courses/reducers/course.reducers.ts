@@ -5,7 +5,8 @@ import {CourseActions} from '../action-types';
 
 
 export interface CoursesState extends EntityState<Course> {
-    allCoursesLoaded: boolean
+    allCoursesLoaded: boolean;
+    saving: boolean;
 }
 
 
@@ -14,8 +15,9 @@ export const adapter = createEntityAdapter<Course>({
 });
 
 
-export const initialCoursesState = adapter.getInitialState({
-    allCoursesLoaded:false
+export const initialCoursesState: CoursesState = adapter.getInitialState({
+    allCoursesLoaded: false,
+    saving: false
 });
 
 
@@ -32,7 +34,22 @@ export const coursesReducer = createReducer(
 
 
     on(CourseActions.courseUpdated, (state, action) =>
-        adapter.updateOne(action.update, state) )
+        adapter.updateOne(
+            action.update,
+            { ...state, saving: true })),
+
+    on(CourseActions.addCourse, (state, _action) => ({ ...state, saving: true })),
+    on(CourseActions.courseAddedSuccess, (state, action) =>
+        adapter.addOne(
+            action.course,
+            { ...state, saving: false })),
+
+    on(
+        CourseActions.courseUpdatedFailure,
+        CourseActions.courseUpdatedSuccess,
+        CourseActions.courseAddedFailure,
+        (state, _action) => ({ ...state, saving: false }
+    ))
 
 );
 
