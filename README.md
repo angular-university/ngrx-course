@@ -3,14 +3,14 @@
 
 This repository contains the code of the video course [Ngrx (with NgRx Data) - The Complete Guide](https://angular-university.io/course/ngrx-course).
 
-This course repository is updated to Angular v10 and NgRx 8:
+This course repository is updated to Angular v11 and NgRx 8:
 
 ![Ngrx (with NgRx Data) - The Complete Guide](https://angular-university.s3-us-west-1.amazonaws.com/course-images/ngrx-v2.png)
 
 
 # Installation pre-requisites
 
-For taking the course we recommend installing Node 12. These are some tutorials to install node in different operating systems:
+For taking the course we recommend installing Node 14. These are some tutorials to install node in different operating systems:
 
 - [Install Node and NPM on Windows](https://www.youtube.com/watch?v=8ODS6RM6x7g)
 - [Install Node and NPM on Linux](https://www.youtube.com/watch?v=yUdHk-Dk_BY)
