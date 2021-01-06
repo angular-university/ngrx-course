@@ -10,11 +10,11 @@ import {
 import { AuthActions } from '../action-types';
 import { User } from '../model/user.model';
 
-export interface AppState {
+export interface AuthState {
   user: User
 }
 
-export const initialAuthState: AppState = {
+export const initialAuthState: AuthState = {
   user: undefined
 };
 

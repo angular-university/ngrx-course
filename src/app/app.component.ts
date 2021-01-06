@@ -3,7 +3,7 @@ import { select, Store } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { distinctUntilChanged, map } from 'rxjs/operators';
 import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
-import { AppState } from './auth/reducers';
+import { AuthState } from './auth/reducers';
 import { isLoggedIn, isLoggedOut } from './auth/auth.selectors';
 
 @Component({
@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
 
   isLoggedOut$: Observable<boolean>;
 
-  constructor(private router: Router, private store: Store<AppState>) {
+  constructor(private router: Router, private store: Store<AuthState>) {
 
   }
 
