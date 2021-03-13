@@ -20,12 +20,15 @@ export const initialAuthState: AuthState = {
 
 // reducer function should always return copy of the new state, and not mutate existing state
 export const authReducer = createReducer(
+
    initialAuthState,
+
    on(AuthActions.login, (state, action) => {
       return {
          user: action.user,
       };
    }),
+   
    on(AuthActions.logout, (state, action) => {
       return {
          user: undefined,

@@ -50,9 +50,18 @@ const routes: Routes = [
       MatListModule,
       MatToolbarModule,
       AuthModule.forRoot(),
-      StoreModule.forRoot(reducers, { metaReducers }),
+      StoreModule.forRoot(reducers, {
+         metaReducers,
+         runtimeChecks: { 
+            strictStateImmutability: true, // forbids mutation of state so we dont accidentally break functionality
+            strictActionImmutability: true, // forbids the rest of the code to mutate action objects
+            strictActionSerializability: true, // ensures that actions are serializable (for dev tools important)
+            strictStateSerializability: true // ensures that state in store is always serializable (for dev tools important)
+         }, 
+      }),
       StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-      EffectsModule.forRoot([])
+      EffectsModule.forRoot([]),
+      StoreRouterConnectingModule.forRoot({ stateKey: "router", routerState: RouterState.Minimal }),
    ],
    bootstrap: [AppComponent],
 })

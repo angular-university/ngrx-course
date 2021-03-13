@@ -28,6 +28,7 @@ export class AppComponent implements OnInit {
 
    ngOnInit() {
 
+      // read user from local storage and dispatch login action if user is present
       const userProfile = localStorage.getItem('user');
       if (userProfile) {
          this.store.dispatch(login({user: JSON.parse(userProfile)}));
