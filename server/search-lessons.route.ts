@@ -3,15 +3,16 @@
 
 import {Request, Response} from 'express';
 import {LESSONS} from "./db-data";
-import {setTimeout} from "timers";
 
-
+interface StringParsedQs {
+  [key: string]: string;
+}
 
 export function searchLessons(req: Request, res: Response) {
 
     console.log('Searching for lessons ...');
 
-        const queryParams = req.query;
+        const queryParams = req.query as StringParsedQs;
 
         const courseId = queryParams.courseId,
             filter = queryParams.filter || '',
@@ -19,7 +20,7 @@ export function searchLessons(req: Request, res: Response) {
             pageNumber = parseInt(queryParams.pageNumber) || 0,
             pageSize = parseInt(queryParams.pageSize);
 
-        let lessons = Object.values(LESSONS).filter(lesson => lesson.courseId == courseId).sort((l1, l2) => l1.id - l2.id);
+        let lessons = Object.values(LESSONS).filter(lesson => lesson.courseId == +courseId).sort((l1, l2) => l1.id - l2.id);
 
         if (filter) {
             lessons = lessons.filter(lesson => lesson.description.trim().toLowerCase().search(filter.toLowerCase()) >= 0);
