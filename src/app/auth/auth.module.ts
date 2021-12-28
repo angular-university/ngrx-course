@@ -10,7 +10,7 @@ import { StoreModule } from '@ngrx/store';
 import {AuthService} from "./auth.service";
 import { EffectsModule } from '@ngrx/effects';
 import { authReducer } from './reducers';
-import { AuthGuard } from '../../../ngrx-course/src/app/auth/auth.guard';
+import { AuthGuard } from './auth.guard';
 import { AuthEffects } from './auth.effects';
 
 @NgModule({
