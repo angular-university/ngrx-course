@@ -47,6 +47,17 @@ Its also possible to install the modules as usual using npm:
 
 This should take a couple of minutes. If there are issues, please post the complete error message in the Questions section of the course.
 
+# Manually adding ngrx dependencies
+
+In versions of Angular 13 and greater, it may be neccesary to manually ng add ngrx dependencies in order have all of the required ngrx dependencies needed for this application to run.  You may need to run all of these commands in the root directory after your initial npm install : 
+
+     ng add @ngrx/store
+     ng add @ngrx/router-store
+     ng add @ngrx/effects
+     ng add @ngrx/data
+     ng add @ngrx/store-devtools
+
+
 # To Run the Development Backend Server
 
 We can start the sample application backend with the following command:
