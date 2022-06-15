@@ -90,11 +90,9 @@ const entityMetadata: EntityMetadataMap = {
     exports: [
         HomeComponent,
         CoursesCardListComponent,
-
         EditCourseDialogComponent,
         CourseComponent
     ],
-    entryComponents: [EditCourseDialogComponent],
     providers: [
         CoursesHttpService,
         CourseEntityService,

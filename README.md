@@ -3,7 +3,7 @@
 
 This repository contains the code of the video course [Ngrx (with NgRx Data) - The Complete Guide](https://angular-university.io/course/ngrx-course).
 
-This course repository is updated to Angular v13:
+This course repository is updated to Angular v14:
 
 ![Ngrx (with NgRx Data) - The Complete Guide](https://angular-university.s3-us-west-1.amazonaws.com/course-images/ngrx-v2.png)
 
@@ -19,7 +19,7 @@ For example, here is how you switch to a new node version using nave:
     # note that you don't even need to update your node version before installing nave
     npm install -g nave
     
-    nave use 12.3.1
+    nave use 16.13.1
     node -v
     v12.3.1
 
