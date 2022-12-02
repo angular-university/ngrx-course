@@ -18,7 +18,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatMomentDateModule} from '@angular/material-moment-adapter';
 import {MatCardModule} from '@angular/material/card';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {RouterModule, Routes} from '@angular/router';
 import {EntityDataService, EntityDefinitionService, EntityMetadataMap} from '@ngrx/data';

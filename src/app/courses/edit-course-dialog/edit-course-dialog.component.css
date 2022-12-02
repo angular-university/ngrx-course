@@ -1,7 +1,8 @@
 
 
-.mat-form-field {
+mat-form-field {
   display: block;
+  width: 100%;
 }
 
 textarea {

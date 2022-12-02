@@ -8,8 +8,7 @@ import {CourseEntityService} from '../services/course-entity.service';
 @Component({
     selector: 'courses-card-list',
     templateUrl: './courses-card-list.component.html',
-    styleUrls: ['./courses-card-list.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    styleUrls: ['./courses-card-list.component.css']
 })
 export class CoursesCardListComponent implements OnInit {
 
