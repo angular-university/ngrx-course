@@ -1,3 +1,7 @@
+import { coursesReducer } from './reducers/course.reducers';
+import { StoreModule } from '@ngrx/store';
+import { CoursesEffects } from './courses.effects';
+import { EffectsModule } from '@ngrx/effects';
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { HomeComponent } from "./home/home.component";
@@ -62,6 +66,8 @@ export const coursesRoutes: Routes = [
     MatMomentDateModule,
     ReactiveFormsModule,
     RouterModule.forChild(coursesRoutes),
+    EffectsModule.forFeature([CoursesEffects]),
+    StoreModule.forFeature("courses", coursesReducer)
   ],
   declarations: [
     HomeComponent,
@@ -79,5 +85,5 @@ export const coursesRoutes: Routes = [
   providers: [CoursesHttpService, CoursesResolver],
 })
 export class CoursesModule {
-  constructor() {}
+  constructor() { }
 }
