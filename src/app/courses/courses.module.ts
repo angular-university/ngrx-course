@@ -72,7 +72,6 @@ export const coursesRoutes: Routes = [
     EditCourseDialogComponent,
     CourseComponent
   ],
-  entryComponents: [EditCourseDialogComponent],
   providers: [
     CoursesHttpService
   ]
