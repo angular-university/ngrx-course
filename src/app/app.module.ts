@@ -44,7 +44,7 @@ const routes: Routes = [
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
-        RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }),
+        RouterModule.forRoot(routes),
         HttpClientModule,
         MatMenuModule,
         MatIconModule,
