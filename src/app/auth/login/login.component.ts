@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 
 import {Store} from "@ngrx/store";
 
@@ -18,7 +18,7 @@ import {AuthActions} from '../action-types';
 })
 export class LoginComponent implements OnInit {
 
-  form: FormGroup;
+  form: UntypedFormGroup;
 
   constructor(
       private fb:FormBuilder,
@@ -63,4 +63,3 @@ export class LoginComponent implements OnInit {
   }
 
 }
-

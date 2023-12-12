@@ -1,39 +1,39 @@
-import {Component, OnInit} from '@angular/core';
-import {compareCourses, Course} from '../model/course';
-import {Observable} from "rxjs";
-import {defaultDialogConfig} from '../shared/default-dialog-config';
-import {EditCourseDialogComponent} from '../edit-course-dialog/edit-course-dialog.component';
+import { Component, OnInit } from '@angular/core';
+import { compareCourses, Course } from '../model/course';
+import { Observable } from "rxjs";
+import { defaultDialogConfig } from '../shared/default-dialog-config';
+import { EditCourseDialogComponent } from '../edit-course-dialog/edit-course-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import {map, shareReplay} from 'rxjs/operators';
-import {CoursesHttpService} from '../services/courses-http.service';
+import { map, shareReplay } from 'rxjs/operators';
+import { CoursesHttpService } from '../services/courses-http.service';
 
 
 
 @Component({
-    selector: 'home',
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.css']
+  selector: 'home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
 
-    promoTotal$: Observable<number>;
+  promoTotal$: Observable<number>;
 
-    loading$: Observable<boolean>;
+  loading$: Observable<boolean>;
 
-    beginnerCourses$: Observable<Course[]>;
+  beginnerCourses$: Observable<Course[]>;
 
-    advancedCourses$: Observable<Course[]>;
+  advancedCourses$: Observable<Course[]>;
 
 
-    constructor(
-      private dialog: MatDialog,
-      private coursesHttpService: CoursesHttpService) {
+  constructor(
+    private dialog: MatDialog,
+    private coursesHttpService: CoursesHttpService) {
 
-    }
+  }
 
-    ngOnInit() {
-      this.reload();
-    }
+  ngOnInit() {
+    this.reload();
+  }
 
   reload() {
 
@@ -57,9 +57,9 @@ export class HomeComponent implements OnInit {
       );
 
     this.promoTotal$ = courses$
-        .pipe(
-            map(courses => courses.filter(course => course.promo).length)
-        );
+      .pipe(
+        map(courses => courses.filter(course => course.promo).length)
+      );
 
   }
 
@@ -68,7 +68,7 @@ export class HomeComponent implements OnInit {
     const dialogConfig = defaultDialogConfig();
 
     dialogConfig.data = {
-      dialogTitle:"Create Course",
+      dialogTitle: "Create Course",
       mode: 'create'
     };
 
