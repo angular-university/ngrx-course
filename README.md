@@ -19,7 +19,7 @@ For example, here is how you switch to a new node version using nave:
     # note that you don't even need to update your node version before installing nave
     npm install -g nave
     
-    nave use 16.13.1
+    nave use 18.18.2
     node -v
     v12.3.1
 
