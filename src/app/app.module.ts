@@ -9,7 +9,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatListModule} from '@angular/material/list';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import {HttpClientModule} from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 import {RouterModule, Routes} from '@angular/router';
 import {AuthModule} from './auth/auth.module';
@@ -38,15 +38,12 @@ const routes: Routes = [
 ];
 
 
-@NgModule({
-    declarations: [
+@NgModule({ declarations: [
         AppComponent
     ],
-    imports: [
-        BrowserModule,
+    bootstrap: [AppComponent], imports: [BrowserModule,
         BrowserAnimationsModule,
         RouterModule.forRoot(routes, {}),
-        HttpClientModule,
         MatMenuModule,
         MatIconModule,
         MatSidenavModule,
@@ -56,22 +53,19 @@ const routes: Routes = [
         AuthModule.forRoot(),
         StoreModule.forRoot(reducers, {
             metaReducers,
-            runtimeChecks : {
+            runtimeChecks: {
                 strictStateImmutability: true,
                 strictActionImmutability: true,
                 strictActionSerializability: true,
-                strictStateSerializability:true
+                strictStateSerializability: true
             }
         }),
-        StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production, connectInZone: true}),
+        StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production, connectInZone: true }),
         EffectsModule.forRoot([]),
         EntityDataModule.forRoot({}),
         StoreRouterConnectingModule.forRoot({
             stateKey: 'router',
             routerState: RouterState.Minimal
-        })
-    ],
-    bootstrap: [AppComponent]
-})
+        })], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule {
 }
