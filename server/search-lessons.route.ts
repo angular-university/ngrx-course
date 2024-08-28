@@ -16,13 +16,13 @@ export function searchLessons(req: Request, res: Response) {
         const courseId = queryParams.courseId,
             filter = queryParams.filter || '',
             sortOrder = queryParams.sortOrder || 'asc',
-            pageNumber = parseInt(queryParams.pageNumber) || 0,
-            pageSize = parseInt(queryParams.pageSize);
+            pageNumber = Number(queryParams.pageNumber) || 0,
+            pageSize = Number(queryParams.pageSize);
 
-        let lessons = Object.values(LESSONS).filter(lesson => lesson.courseId == courseId).sort((l1, l2) => l1.id - l2.id);
+        let lessons = Object.values(LESSONS).filter(lesson => lesson.courseId == Number(courseId)).sort((l1, l2) => l1.id - l2.id);
 
         if (filter) {
-            lessons = lessons.filter(lesson => lesson.description.trim().toLowerCase().search(filter.toLowerCase()) >= 0);
+            lessons = lessons.filter(lesson => lesson.description.trim().toLowerCase().search(filter.toString().toLowerCase()) >= 0);
         }
 
         if (sortOrder == "desc") {
