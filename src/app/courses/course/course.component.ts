@@ -13,7 +13,8 @@ import {LessonEntityService} from '../services/lesson-entity.service';
     selector: 'course',
     templateUrl: './course.component.html',
     styleUrls: ['./course.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class CourseComponent implements OnInit {
 

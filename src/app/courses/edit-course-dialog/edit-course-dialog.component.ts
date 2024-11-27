@@ -10,7 +10,8 @@ import {CourseEntityService} from '../services/course-entity.service';
     selector: 'course-dialog',
     templateUrl: './edit-course-dialog.component.html',
     styleUrls: ['./edit-course-dialog.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class EditCourseDialogComponent {
 
