@@ -6,9 +6,10 @@ import {Observable} from 'rxjs';
 import {CoursesHttpService} from '../services/courses-http.service';
 
 @Component({
-  selector: 'course-dialog',
-  templateUrl: './edit-course-dialog.component.html',
-  styleUrls: ['./edit-course-dialog.component.css']
+    selector: 'course-dialog',
+    templateUrl: './edit-course-dialog.component.html',
+    styleUrls: ['./edit-course-dialog.component.css'],
+    standalone: false
 })
 export class EditCourseDialogComponent {
 
