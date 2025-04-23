@@ -13,6 +13,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-devkit/core": "^19.0.2",
     "@angular-devkit/schematics": "^19.0.2",
     "@angular/animations": "^19.0.1",
     "@angular/cdk": "^19.0.0",
@@ -25,12 +26,12 @@
     "@angular/platform-browser": "^19.0.1",
     "@angular/platform-browser-dynamic": "^19.0.1",
     "@angular/router": "^19.0.1",
-    "@ngrx/data": "^18.1.1",
-    "@ngrx/effects": "^18.1.1",
-    "@ngrx/entity": "^18.1.1",
-    "@ngrx/router-store": "^18.1.1",
-    "@ngrx/store": "^18.1.1",
-    "@ngrx/store-devtools": "^18.1.1",
+    "@ngrx/data": "^19.0.0",
+    "@ngrx/effects": "^19.0.0",
+    "@ngrx/entity": "^19.0.0",
+    "@ngrx/router-store": "^19.0.0",
+    "@ngrx/store": "^19.0.0",
+    "@ngrx/store-devtools": "^19.0.0",
     "body-parser": "^1.18.2",
     "core-js": "^2.4.1",
     "cors": "^2.8.5",
@@ -38,8 +39,7 @@
     "moment": "^2.22.2",
     "rxjs": "^6.5.4",
     "tslib": "^2.0.0",
-    "zone.js": "~0.15.0",
-    "@ngrx/operators": "^18.0.0"
+    "zone.js": "~0.15.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^19.0.2",
