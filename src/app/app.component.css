@@ -1,5 +1,5 @@
 
->>> body {
+body {
     margin: 0;
 }
 
@@ -15,10 +15,6 @@ main {
     outline:none;
 }
 
-
-.spinner-container {
-  width: 100%;
-  margin-top: 100px;
+mat-icon{
+    vertical-align: middle;
 }
-
-
