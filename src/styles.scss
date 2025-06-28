@@ -1,139 +1,16 @@
-//@use '@angular/material' as mat;
-/* You can add global styles to this file, and also import other style files */
-
-
-/*
-
-// Include non-theme styles for core.
-@include mat.core();
-
-
-
-
-// Define a theme.
-$primary: mat.define-palette($mat-custom-theme);
-$accent:  mat.define-palette(mat.$pink-palette, A200, A100, A400);
-
-$theme: mat.define-light-theme($primary, $accent);
-
-// Include all theme styles for the components.
-@include mat.all-component-themes($theme);
-
-*/
-
-
-
+@import "~@ng-select/ng-select/themes/default.theme.css";
 @use '@angular/material' as mat;
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@include mat.core();
 
-
-@include mat.elevation-classes();
-@include mat.app-background();
-
-$dark-primary-text: rgba(black, 0.87);
-
-$light-primary-text: white;
-
-$mat-primary: (
-  50: #fff3e0,
-  100: #ffe0b2,
-  200: #ffcc80,
-  300: #ffb74d,
-  400: #ffa726,
-  500: rgba(255, 152, 0, 0.8),
-  600: #fb8c00,
-  700: #f57c00,
-  800: #ef6c00,
-  900: #e65100,
-  A100: #ffd180,
-  A200: #ffab40,
-  A400: #ff9100,
-  A700: #ff6d00,
-  contrast: (
-    50: rgba(black, 0.87),
-    100: rgba(black, 0.87),
-    200: rgba(black, 0.87),
-    300: rgba(black, 0.87),
-    400: rgba(black, 0.87),
-    500: white,
-    600: white,
-    700: white,
-    800: white,
-    900: white,
-    A100: rgba(black, 0.87),
-    A200: white,
-    A400: white,
-    A700: white
-  )
-);
-
-$mat-accent: (
-  50: #fce4ec,
-  100: #f8bbd0,
-  200: #f48fb1,
-  300: #f06292,
-  400: #ec407a,
-  500: #e91e63,
-  600: #d81b60,
-  700: #c2185b,
-  800: #ad1457,
-  900: #880e4f,
-  A100: #ff80ab,
-  A200: #ff4081,
-  A400: #f50057,
-  A700: #c51162,
-  contrast: (
-    50: $dark-primary-text,
-    100: $dark-primary-text,
-    200: $dark-primary-text,
-    300: $dark-primary-text,
-    400: $dark-primary-text,
-    500: $light-primary-text,
-    600: $light-primary-text,
-    700: $light-primary-text,
-    800: $light-primary-text,
-    900: $light-primary-text,
-    A100: $dark-primary-text,
-    A200: $light-primary-text,
-    A400: $light-primary-text,
-    A700: $light-primary-text,
-  )
-);
-
-$primary: mat.m2-define-palette($mat-primary, 500);
-
-$accent: mat.m2-define-palette($mat-accent, A200, A100, A400);
-
-$theme: mat.m2-define-light-theme((
+$my-primary: mat.define-palette(mat.$indigo-palette);
+$my-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$my-theme: mat.define-light-theme((
   color: (
-    primary: $primary,
-    accent: $accent,
-  ),
-  typography: mat.m2-define-typography-config(),
-  density: 0,
+    primary: $my-primary,
+    accent: $my-accent,
+  )
 ));
 
-@include mat.all-component-themes($theme);
-
-.mat-elevation-z7 {
-  box-shadow: 0 4px 5px -2px #0003, 0 7px 10px 1px #00000024, 0 2px 16px 1px #0000001f !important;
-}
-
-.mat-elevation-z10 {
-  box-shadow: 0 6px 6px -3px #0003, 0 10px 14px 1px #00000024, 0 4px 18px 3px #0000001f !important;
-}
-
-
-.spinner-container {
-  position: fixed;
-  height: 300px;
-  width: 345px;
-  display: flex;
-  background: white;
-  margin-top: 70px;
-  z-index: 1;
-  opacity: 0.5;
-  justify-content: center;
-}
+@include mat.all-component-themes($my-theme);
+// @include mat.elevation-classes();
