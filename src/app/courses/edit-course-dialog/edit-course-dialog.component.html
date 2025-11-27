@@ -3,76 +3,49 @@
 
 <mat-dialog-content>
 
-  <ng-container *ngIf="form">
-
-    <div class="spinner-container" *ngIf="loading$ | async">
-
-      <mat-spinner></mat-spinner>
-
-    </div>
-
+  @if (form) {
+    @if (loading$ | async) {
+      <div class="spinner-container">
+        <mat-spinner></mat-spinner>
+      </div>
+    }
     <ng-container [formGroup]="form">
-
       <mat-form-field>
-
         <input matInput
-               placeholder="Course Description"
-               formControlName="description">
-
+          placeholder="Course Description"
+          formControlName="description">
       </mat-form-field>
-
-      <ng-container *ngIf="mode == 'create'">
-
+      @if (mode == 'create') {
         <mat-form-field>
-
           <input matInput
-                 placeholder="Course Url"
-                 formControlName="url">
-
+            placeholder="Course Url"
+            formControlName="url">
         </mat-form-field>
-
         <mat-form-field>
-
           <input matInput
-                 placeholder="Course Icon Url"
-                 formControlName="iconUrl">
-
+            placeholder="Course Icon Url"
+            formControlName="iconUrl">
         </mat-form-field>
-
-      </ng-container>
-
+      }
       <mat-form-field>
-
         <mat-select placeholder="Select category"
-                    formControlName="category">
-
+          formControlName="category">
           <mat-option value="BEGINNER">
-            Beginner</mat-option>
+          Beginner</mat-option>
           <mat-option value="INTERMEDIATE">
-            Intermediate</mat-option>
+          Intermediate</mat-option>
           <mat-option value="ADVANCED">
-            Advanced</mat-option>
-
+          Advanced</mat-option>
         </mat-select>
-
       </mat-form-field>
-
       <mat-slide-toggle formControlName="promo">Promotion On</mat-slide-toggle>
-
-
       <mat-form-field>
-
         <textarea matInput placeholder="Description"
-                  formControlName="longDescription">
-
+          formControlName="longDescription">
         </textarea>
-
       </mat-form-field>
-
     </ng-container>
-
-
-  </ng-container>
+  }
 
 </mat-dialog-content>
 
@@ -83,8 +56,8 @@
   </button>
 
   <button mat-raised-button color="primary"
-          [disabled]="!form?.valid || (this.loading$ | async)"
-          (click)="onSave()">
+    [disabled]="!form?.valid || (this.loading$ | async)"
+    (click)="onSave()">
     Save
   </button>
 
