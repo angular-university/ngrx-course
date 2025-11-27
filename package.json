@@ -13,6 +13,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-devkit/core": "^21.0.1",
     "@angular-devkit/schematics": "^21.0.1",
     "@angular/animations": "^21.0.1",
     "@angular/cdk": "^21.0.1",
@@ -28,6 +29,7 @@
     "@ngrx/data": "^20.1.0",
     "@ngrx/effects": "^20.1.0",
     "@ngrx/entity": "^20.1.0",
+    "@ngrx/operators": "^20.1.0",
     "@ngrx/router-store": "^20.1.0",
     "@ngrx/store": "^20.1.0",
     "@ngrx/store-devtools": "^20.1.0",
@@ -38,8 +40,7 @@
     "moment": "^2.22.2",
     "rxjs": "^6.5.4",
     "tslib": "^2.0.0",
-    "zone.js": "~0.15.0",
-    "@ngrx/operators": "^20.1.0"
+    "zone.js": "~0.15.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^21.0.1",
